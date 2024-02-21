@@ -1,4 +1,4 @@
-.experience {
+.publications {
     &__extra_padding {
         padding-top: 4rem !important;
     }
@@ -8,7 +8,7 @@
         position: relative;
         @include avoid-break;
         &:not(:first-child) {
-            padding-top: 1.5rem;
+            padding-top: 0.0rem;
         }
         margin-bottom: 10px;
         margin-top: 10px;
@@ -20,7 +20,7 @@
             position: absolute;
             background: linear-gradient($color-page-background, rgba(255, 255, 255, 0));
             //background: linear-gradient(blue, red);
-            margin-top: 25px;
+            margin-top: 5px;
         }
     }
 
@@ -34,11 +34,16 @@
     &__job {
         position: relative;
         transition: transform 0.2s cubic-bezier($cubic);
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
 
         &:hover {
             transform: translateX(0.5rem);
         }
+    }
+
+    &__job--two-columns ul {
+        column-count: 2; /* Set the number of columns to 2 */
+        column-gap: 20px; /* Adjust the gap between columns as needed */
     }
 
     &__company,
@@ -49,6 +54,7 @@
     }
 
     &__company {
+        text-transform: uppercase;
         color: $color-dark;
     }
 
@@ -92,7 +98,7 @@
     &__badges {
         display: block;
         text-align: right;
-        margin-top: -2.0rem;
+        margin-top: 0.0rem;
         margin-bottom: 0.0rem;
     }
 
@@ -106,3 +112,4 @@
         padding: 0.1rem 0.6rem;
     }
 }
+

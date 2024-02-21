@@ -1,0 +1,47 @@
+{{ if .Thesis }}
+<div id="thesis" class="section">
+    <div class="section__heading">
+        <h2 class="section__title">{{ i18n "thesis" }}</h2>
+    </div>
+    <div class="section__content">
+        <div class="thesis">
+            {{ range .Thesis }}
+            {{ if .Class }}
+            <div class="thesis__item {{ .Class }}">
+            {{ else }}
+            <div class="thesis__item">
+            {{ end }}
+                <div class="thesis__header">
+                    <h3 class="thesis__company">
+                        {{ .Employer | safeHTML }}
+                    </h3>
+                    <h3 class="thesis__place">{{ .Place | safeHTML }}</h3>
+                </div>
+                {{ range .Positions }}
+                <div class="thesis__job">
+                    <div class="thesis__subheader">
+                        <h3 class="thesis__position">
+                            {{ .Title | safeHTML}}
+                        </h3>
+                        <h3 class="thesis__date">{{ .Date | safeHTML }}</h3>
+                    </div>
+                    <ul>
+                        {{ range .Details }}
+                        <li class="thesis__bullet">{{ . | safeHTML }}</li>
+                        {{ end }}
+                    </ul>
+                    <div class="thesis__badges">
+                        <ul>
+                            {{ range .Badges }}
+                            <li class="thesis__badge">{{ . }}</li>
+                            {{ end }}
+                        </ul>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}

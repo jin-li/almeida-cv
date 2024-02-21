@@ -1,0 +1,33 @@
+{{ if .Publications }}
+<div id="publications" class="section">
+    <div class="section__heading">
+        <h2 class="section__title">{{ i18n "publications" }}</h2>
+    </div>
+    <div class="section__content">
+        <div class="publications">
+            {{ range .Publications }}
+            {{ if .Class }}
+            <div class="publications__item {{ .Class }}">
+            {{ else }}
+            <div class="publications__item">
+            {{ end }}
+                {{ range .Publication }}
+                    <ul>
+                        {{ range .Details }}
+                        <li class="publications__bullet">{{ . | safeHTML }}</li>
+                        {{ end }}
+                    </ul>
+                    <div class="publications__badges">
+                        <ul>
+                            {{ range .Badges }}
+                            <li class="publications__badge">{{ . }}</li>
+                            {{ end }}
+                        </ul>
+                    </div>
+                {{ end }}
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}

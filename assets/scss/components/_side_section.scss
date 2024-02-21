@@ -1,6 +1,6 @@
 .sideSection {
     display: block;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;      // bottom margin of the sections (contacts, skills, languages, interests, etc)
     @include avoid-break;
 
     &__heading {

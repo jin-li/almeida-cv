@@ -1,0 +1,45 @@
+{{ if .Researches }}
+<div id="researches" class="section">
+    <div class="section__heading">
+        <h2 class="section__title">{{ i18n "researches" }}</h2>
+    </div>
+    <div class="section__content">
+        <div class="researches">
+            {{ range .Researches }}
+            {{ if .Class }}
+            <div class="researches__item {{ .Class }}">
+            {{ else }}
+            <div class="researches__item">
+            {{ end }}
+                <div class="researches__header">
+                    <h3 class="researches__company">
+                        {{ .Employer | safeHTML }}
+                    </h3>
+                    <h3 class="experience__date">{{ .Date | safeHTML }}</h3>
+                </div>
+                {{ range .Research }}
+                {{ if .TwoColumns }}
+                <div class="researches__job--two-columns">
+                {{ else }}
+                <div class="researches__job">
+                {{ end }}
+                    <ul>
+                        {{ range .Details }}
+                        <li class="researches__bullet">{{ . | safeHTML }}</li>
+                        {{ end }}
+                    </ul>
+                    <div class="researches__badges">
+                        <ul>
+                            {{ range .Badges }}
+                            <li class="researches__badge">{{ . }}</li>
+                            {{ end }}
+                        </ul>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}
