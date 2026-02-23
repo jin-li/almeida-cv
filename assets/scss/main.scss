@@ -26,6 +26,7 @@ $pages: {{ .Site.Params.pages | default 1}} !default;
 @import "typography";
 
 @import "components/section";
+@import "components/name";
 @import "components/side_section";
 @import "components/experience";
 @import "components/education";

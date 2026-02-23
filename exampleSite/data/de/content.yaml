@@ -1,16 +1,20 @@
-BasicInfo:
-  FirstName: Inês
-  LastName: Almeida
+Name:
+  first: Inês
+  last: Almeida
+  order: first_last
+
+Avatar:
   Photo: img/avatar.jpg
-  Contacts:
-    - Icon: fas fa-phone
-      Info: +44 123 456 789
-    - Icon: fas fa-envelope
-      Info: contact@ines-almeida.com
-    - Icon: fas fa-globe
-      Info: ines-almeida.com
-    - Icon: fas fa-map-marker-alt
-      Info: Portugal
+
+Contacts:
+  - Icon: fas fa-phone
+    Info: +44 123 456 789
+  - Icon: fas fa-envelope
+    Info: contact@ines-almeida.com
+  - Icon: fas fa-globe
+    Info: ines-almeida.com
+  - Icon: fas fa-map-marker-alt
+    Info: Portugal
 
 Profile: Deutscher Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 

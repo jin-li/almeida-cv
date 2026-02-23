@@ -16,7 +16,7 @@
         <meta property="og:title" content="{{ .Site.Title }}" />
         <meta property="og:url" content="{{ .Permalink }}" />
         <meta property="og:type" content="website" />
-        {{ with $data.BasicInfo.Photo }}
+        {{ with $data.Avatar.Photo }}
             <meta property="og:image" content="{{ . | absURL }}" />
         {{ end }}
         {{ with $data.Profile | htmlUnescape | emojify | truncate 200 }}
