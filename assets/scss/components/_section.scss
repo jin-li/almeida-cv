@@ -31,8 +31,13 @@
 
 @media print {
     .section {
-        page-break-inside: avoid;
-        break-inside: avoid-page;
+        page-break-inside: auto;
+        break-inside: auto;
+
+        &__lead {
+            page-break-inside: avoid;
+            break-inside: avoid-page;
+        }
 
         &__heading {
             page-break-after: avoid !important;
@@ -42,13 +47,6 @@
         &__content {
             page-break-before: avoid;
             break-before: avoid-page;
-
-            & > :first-child {
-                page-break-inside: avoid;
-                break-inside: avoid-page;
-                page-break-before: avoid;
-                break-before: avoid-page;
-            }
         }
     }
 }
