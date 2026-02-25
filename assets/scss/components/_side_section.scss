@@ -1,7 +1,6 @@
 .sideSection {
     display: block;
     margin-bottom: 3rem;
-    @include avoid-break;
 
     &__heading {
         width: 100%;
@@ -36,5 +35,27 @@
 
     & li {
         list-style: none;
+    }
+}
+
+@media print {
+    .sideSection {
+        page-break-inside: auto;
+        break-inside: auto;
+
+        &__lead {
+            page-break-inside: avoid;
+            break-inside: avoid-page;
+        }
+
+        &__heading {
+            page-break-after: avoid !important;
+            break-after: avoid-page;
+        }
+
+        &__content {
+            page-break-before: avoid;
+            break-before: avoid-page;
+        }
     }
 }
