@@ -1,5 +1,9 @@
 {{ $data := or (index .Site.Data .Site.Language.Lang).content .Site.Data.content }}
 {{ .Scratch.Set "data" $data }}
+{{ $defaultSections := slice "name" "profile" "experience" "education" "references" }}
+{{ $defaultSideSections := slice "avatar" "contacts" "skills" "languages" "diplomas" "interests" }}
+{{ $sections := or .Site.Params.section .Site.Params.sections $defaultSections }}
+{{ $sideSections := or .Site.Params.side_section .Site.Params.sideSections $defaultSideSections }}
 <!DOCTYPE html>
 <html lang="en">
     {{ partial "head.html" . }}
@@ -10,23 +14,18 @@
         {{ else }}
         <div class="content__left">
         {{ end }}
-            {{ partial "_name.html" $data }}
-            {{ partial "_profile.html" $data }}
-            {{ partial "_experience.html" $data }}
-            {{ partial "_education.html" $data }}
-            {{ partial "_references.html" $data }}
+            {{ range $sections }}
+                {{ partial "_render_section.html" (dict "name" . "data" $data "isSide" false) }}
+            {{ end }}
         </div>
         {{ if .Site.Params.swapColumns }}
         <div class="content__right content__swapped__right">
         {{ else }}
         <div class="content__right">
         {{ end }}
-            {{ partial "_avatar.html" $data }}
-            {{ partial "_contacts.html" $data }}
-            {{ partial "_skills.html" $data }}
-            {{ partial "_languages.html" $data }}
-            {{ partial "_diplomas.html" $data }}
-            {{ partial "_interests.html" $data }}
+            {{ range $sideSections }}
+                {{ partial "_render_section.html" (dict "name" . "data" $data "isSide" true) }}
+            {{ end }}
         </div>
     </div>
 </body>

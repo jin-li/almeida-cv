@@ -1,12 +1,47 @@
 {{ if .Education }}
-<div id="education" class="section">
-    <div class="section__heading">
-        <h2 class="section__title">
-            {{ i18n "education" }}
-        </h2>
+    {{ $isSide := false }}
+
+    {{ if isset . "_isSide" }}
+        {{ $isSide = ._isSide }}
+    {{ end }}
+
+    {{ $wrapperClass := "section" }}
+    {{ $headingClass := "section__heading" }}
+    {{ $titleClass := "section__title" }}
+    {{ $contentClass := "section__content" }}
+
+    {{ if $isSide }}
+        {{ $wrapperClass = "sideSection" }}
+        {{ $headingClass = "sideSection__heading" }}
+        {{ $titleClass = "sideSection__title" }}
+        {{ $contentClass = "sideSection__content" }}
+    {{ end }}
+
+    {{ $leadClass := printf "%s__lead" $wrapperClass }}
+    {{ $items := .Education }}
+    
+<div id="education" class="{{ $wrapperClass }}">
+    <div class="{{ $leadClass }}">
+        <div class="{{ $headingClass }}">
+            <h2 class="{{ $titleClass }}">
+                {{ i18n "education" }}
+            </h2>
+        </div>
+        {{ if gt (len $items) 0 }}
+        {{ $first := index $items 0 }}
+        <div class="{{ $contentClass }}">
+            <div class="education__item">
+                <h3 class="education__title">{{ $first.Course | safeHTML }}</h3>
+                <h4 class="education__place">{{ $first.Place | safeHTML }}</h4>
+                <h4 class="education__date">{{ $first.Date | safeHTML }}</h4>
+                <div class="education__description">{{ $first.Details | safeHTML }}</div>
+            </div>
+        </div>
+        {{ end }}
     </div>
-    <div class="section__content">
-        {{ range .Education }}
+    {{ if gt (len $items) 1 }}
+    <div class="{{ $contentClass }}">
+        {{ range after 1 $items }}
             <div class="education__item">
                 <h3 class="education__title">{{ .Course | safeHTML }}</h3>
                 <h4 class="education__place">{{ .Place | safeHTML }}</h4>
@@ -15,5 +50,6 @@
             </div>
         {{ end }}
     </div>
+    {{ end }}
 </div>
 {{ end }}

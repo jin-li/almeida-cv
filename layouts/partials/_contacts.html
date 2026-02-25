@@ -1,5 +1,17 @@
 {{ if .Contacts }}
-<div class="sideSection contact">
+    {{ $isSide := false }}
+
+    {{ if isset . "_isSide" }}
+        {{ $isSide = ._isSide }}
+    {{ end }}
+
+    {{ $wrapperClass := "section" }}
+
+    {{ if $isSide }}
+        {{ $wrapperClass = "sideSection" }}
+    {{ end }}
+
+<div class="{{ $wrapperClass }} contact">
     <ul>
         {{ range .Contacts }}
         <li class="contact__item">

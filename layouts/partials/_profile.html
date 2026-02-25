@@ -1,9 +1,27 @@
 {{ if .Profile }}
-<div id="profile" class="section">
-    <div class="section__heading">
-        <h2 class="section__title">{{ i18n "profile" }}</h2>
+    {{ $isSide := false }}
+
+    {{ if isset . "_isSide" }}
+        {{ $isSide = ._isSide }}
+    {{ end }}
+
+    {{ $wrapperClass := "section" }}
+    {{ $headingClass := "section__heading" }}
+    {{ $titleClass := "section__title" }}
+    {{ $contentClass := "section__content" }}
+
+    {{ if $isSide }}
+        {{ $wrapperClass = "sideSection" }}
+        {{ $headingClass = "sideSection__heading" }}
+        {{ $titleClass = "sideSection__title" }}
+        {{ $contentClass = "sideSection__content" }}
+    {{ end }}
+    
+<div id="profile" class="{{ $wrapperClass }}">
+    <div class="{{ $headingClass }}">
+        <h2 class="{{ $titleClass }}">{{ i18n "profile" }}</h2>
     </div>
-    <div class="section__content">
+    <div class="{{ $contentClass }}">
         <p>{{ .Profile | safeHTML | emojify }}</p>
     </div>
 </div>

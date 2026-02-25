@@ -1,0 +1,8 @@
+{{ $sectionName := lower (printf "%v" .name) }}
+{{ $aliases := dict "contact" "contacts" "language" "languages" "diploma" "diplomas" "interest" "interests" }}
+{{ $resolvedName := or (index $aliases $sectionName) $sectionName }}
+{{ $partialPath := printf "partials/_%s.html" $resolvedName }}
+
+{{ if templates.Exists $partialPath }}
+    {{ partial (printf "_%s.html" $resolvedName) (merge .data (dict "_isSide" .isSide)) }}
+{{ end }}

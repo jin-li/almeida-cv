@@ -1,9 +1,27 @@
 {{ if .Skills }}
-<div class="sideSection">
-    <div class="sideSection__heading">
-        <h2 class="sideSection__title">{{ i18n "skills" }}</h2>
+    {{ $isSide := false }}
+
+    {{ if isset . "_isSide" }}
+        {{ $isSide = ._isSide }}
+    {{ end }}
+
+    {{ $wrapperClass := "section" }}
+    {{ $headingClass := "section__heading" }}
+    {{ $titleClass := "section__title" }}
+    {{ $contentClass := "section__content" }}
+    
+    {{ if $isSide }}
+        {{ $wrapperClass = "sideSection" }}
+        {{ $headingClass = "sideSection__heading" }}
+        {{ $titleClass = "sideSection__title" }}
+        {{ $contentClass = "sideSection__content" }}
+    {{ end }}
+    
+<div class="{{ $wrapperClass }}">
+    <div class="{{ $headingClass }}">
+        <h2 class="{{ $titleClass }}">{{ i18n "skills" }}</h2>
     </div>
-    <div class="sideSection__content">
+    <div class="{{ $contentClass }}">
         <ul class="skills">
             <li>
                 {{ range .Skills }}

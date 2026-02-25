@@ -1,15 +1,35 @@
 {{ if .Name }}
+    {{ $isSide := false }}
+
+    {{ if isset . "_isSide" }}
+        {{ $isSide = ._isSide }}
+    {{ end }}
+
+    {{ $wrapperClass := "section" }}
+    {{ $headingClass := "section__heading" }}
+    {{ $titleClass := "section__title" }}
+    {{ $contentClass := "section__content" }}
+
+    {{ if $isSide }}
+        {{ $wrapperClass = "sideSection" }}
+        {{ $headingClass = "sideSection__heading" }}
+        {{ $titleClass = "sideSection__title" }}
+        {{ $contentClass = "sideSection__content" }}
+    {{ end }}
+
     {{ $firstName := or (index .Name "first") (index .Name "First") (index .Name "firstName") (index .Name "FirstName") }}
     {{ $lastName := or (index .Name "last") (index .Name "Last") (index .Name "lastName") (index .Name "LastName") }}
     {{ $nameOrder := "first_last" }}
+
     {{ with .Name }}
         {{ $order := or (index . "order") (index . "Order") }}
         {{ if eq (lower (printf "%v" $order)) "last_first" }}
             {{ $nameOrder = "last_first" }}
         {{ end }}
     {{ end }}
-    <div id="name" class="section section--name">
-        <div class="section__content">
+    
+    <div id="name" class="{{ $wrapperClass }} section--name">
+        <div class="{{ $contentClass }}">
             <h1 class="mainHeading">
                 {{ if eq $nameOrder "last_first" }}
                 {{ $lastName }} <span>{{ $firstName }}</span>

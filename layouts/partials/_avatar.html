@@ -1,5 +1,17 @@
 {{ if .Avatar.Photo }}
-    <div class="sideSection avatar">
+    {{ $isSide := false }}
+
+    {{ if isset . "_isSide" }}
+        {{ $isSide = ._isSide }}
+    {{ end }}
+
+    {{ $wrapperClass := "section" }}
+
+    {{ if $isSide }}
+        {{ $wrapperClass = "sideSection" }}
+    {{ end }}
+
+    <div class="{{ $wrapperClass }} avatar">
         <div class="avatar__container">
             <img class="avatar__img" src="{{ .Avatar.Photo }}" alt="photo of me">
         </div>

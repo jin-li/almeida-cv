@@ -1,11 +1,76 @@
 {{ if .Experience }}
-<div id="experience" class="section">
-    <div class="section__heading">
-        <h2 class="section__title">{{ i18n "experience" }}</h2>
+    {{ $isSide := false }}
+    
+    {{ if isset . "_isSide" }}
+        {{ $isSide = ._isSide }}
+    {{ end }}
+
+    {{ $wrapperClass := "section" }}
+    {{ $headingClass := "section__heading" }}
+    {{ $titleClass := "section__title" }}
+    {{ $contentClass := "section__content" }}
+
+    {{ if $isSide }}
+        {{ $wrapperClass = "sideSection" }}
+        {{ $headingClass = "sideSection__heading" }}
+        {{ $titleClass = "sideSection__title" }}
+        {{ $contentClass = "sideSection__content" }}
+    {{ end }}
+
+    {{ $leadClass := printf "%s__lead" $wrapperClass }}
+    {{ $items := .Experience }}
+    
+<div id="experience" class="{{ $wrapperClass }}">
+    <div class="{{ $leadClass }}">
+        <div class="{{ $headingClass }}">
+            <h2 class="{{ $titleClass }}">{{ i18n "experience" }}</h2>
+        </div>
+        {{ if gt (len $items) 0 }}
+        {{ $first := index $items 0 }}
+        <div class="{{ $contentClass }}">
+            <div class="experience">
+                {{ if $first.Class }}
+                <div class="experience__item {{ $first.Class }}">
+                {{ else }}
+                <div class="experience__item">
+                {{ end }}
+                    <div class="experience__header">
+                        <h3 class="experience__company">
+                            {{ $first.Employer | safeHTML }}
+                        </h3>
+                        <h3 class="experience__place">{{ $first.Place | safeHTML }}</h3>
+                    </div>
+                    {{ range $first.Positions }}
+                    <div class="experience__job">
+                        <div class="experience__subheader">
+                            <h3 class="experience__position">
+                                {{ .Title | safeHTML}}
+                            </h3>
+                            <h3 class="experience__date">{{ .Date | safeHTML }}</h3>
+                        </div>
+                        <ul>
+                            {{ range .Details }}
+                            <li class="experience__bullet">{{ . | safeHTML }}</li>
+                            {{ end }}
+                        </ul>
+                        <div class="experience__badges">
+                            <ul>
+                                {{ range .Badges }}
+                                <li class="experience__badge">{{ . }}</li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+        {{ end }}
     </div>
-    <div class="section__content">
+    {{ if gt (len $items) 1 }}
+    <div class="{{ $contentClass }}">
         <div class="experience">
-            {{ range .Experience }}
+            {{ range after 1 $items }}
             {{ if .Class }}
             <div class="experience__item {{ .Class }}">
             {{ else }}
@@ -43,5 +108,6 @@
             {{ end }}
         </div>
     </div>
+    {{ end }}
 </div>
 {{ end }}
