@@ -20,21 +20,27 @@
     {{ $firstName := or (index .Name "first") (index .Name "First") (index .Name "firstName") (index .Name "FirstName") }}
     {{ $lastName := or (index .Name "last") (index .Name "Last") (index .Name "lastName") (index .Name "LastName") }}
     {{ $nameOrder := "first_last" }}
+    {{ $nameAlign := "" }}
 
     {{ with .Name }}
         {{ $order := or (index . "order") (index . "Order") }}
         {{ if eq (lower (printf "%v" $order)) "last_first" }}
             {{ $nameOrder = "last_first" }}
         {{ end }}
+
+        {{ $align := lower (printf "%v" (or (index . "align") (index . "Align"))) }}
+        {{ if or (eq $align "left") (eq $align "center") (eq $align "right") }}
+            {{ $nameAlign = printf " section--name--align-%s" $align }}
+        {{ end }}
     {{ end }}
     
-    <div id="name" class="{{ $wrapperClass }} section--name">
+    <div id="name" class="{{ $wrapperClass }} section--name{{ $nameAlign }}">
         <div class="{{ $contentClass }}">
             <h1 class="mainHeading">
                 {{ if eq $nameOrder "last_first" }}
-                {{ $lastName }} <span>{{ $firstName }}</span>
+                    {{ $lastName }} <span>{{ $firstName }}</span>
                 {{ else }}
-                {{ $firstName }} <span>{{ $lastName }}</span>
+                    {{ $firstName }} <span>{{ $lastName }}</span>
                 {{ end }}
             </h1>
         </div>

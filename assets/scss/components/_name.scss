@@ -1,3 +1,15 @@
 .section--name {
     margin-bottom: 2.5rem;
+
+    &.section--name--align-left {
+        text-align: left;
+    }
+
+    &.section--name--align-center {
+        text-align: center;
+    }
+
+    &.section--name--align-right {
+        text-align: right;
+    }
 }

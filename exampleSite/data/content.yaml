@@ -2,6 +2,7 @@ Name:
   first: Inês
   last: Almeida
   order: first_last
+  align: center
 
 Avatar:
   Photo: img/avatar.jpg
