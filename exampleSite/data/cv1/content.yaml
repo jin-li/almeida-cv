@@ -119,3 +119,20 @@ Interests:
   - Bossa Nova
   - Design
   - Languages
+
+Publications:
+  - Authors: Alice, et al
+    Title: An Awesome Research Paper
+    URL: https://example.com/publication1
+    Publisher: Journal of Awesome Research
+    Year: 2025
+  - Authors: Alice, Bob
+    Title: Another Research Paper
+    URL: https://example.com/publication2
+    Publisher: International Journal of Computer Science
+    Year: 2023
+  - Authors: Alice, Bob
+    Title: Yet Another Research Paper
+    URL: https://example.com/publication3
+    Publisher: AI Conference
+    Year: 2021

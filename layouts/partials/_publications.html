@@ -1,0 +1,79 @@
+{{ if .Publications }}
+    {{ $isSide := false }}
+
+    {{ if isset . "_isSide" }}
+        {{ $isSide = ._isSide }}
+    {{ end }}
+
+    {{ $wrapperClass := "section" }}
+    {{ $headingClass := "section__heading" }}
+    {{ $titleClass := "section__title" }}
+    {{ $contentClass := "section__content" }}
+
+    {{ if $isSide }}
+        {{ $wrapperClass = "sideSection" }}
+        {{ $headingClass = "sideSection__heading" }}
+        {{ $titleClass = "sideSection__title" }}
+        {{ $contentClass = "sideSection__content" }}
+    {{ end }}
+
+    {{ $leadClass := printf "%s__lead" $wrapperClass }}
+    {{ $items := .Publications }}
+
+<div id="publications" class="{{ $wrapperClass }}">
+    <div class="publications__items">
+    <div class="{{ $leadClass }}">
+        <div class="{{ $headingClass }}">
+            <h2 class="{{ $titleClass }}">{{ partial "_t.html" (dict "key" "publications" "lang" ._lang) }}</h2>
+        </div>
+        {{ if gt (len $items) 0 }}
+        {{ $first := index $items 0 }}
+        <div class="{{ $contentClass }} publications">
+            <ul class="publications__list">
+        <li class="publications__item">
+            {{ with $first.Authors }}
+            <span class="publications__authors">{{ . | safeHTML }}</span>. 
+            {{ end }}
+            {{ if $first.URL }}
+                <a class="publications__title publications__title--link" href="{{ $first.URL | safeURL }}" target="_blank" rel="noopener noreferrer"><em>"{{ $first.Title | safeHTML }}"</em></a>
+            {{ else }}
+                <span class="publications__title"><em>"{{ $first.Title | safeHTML }}"</em></span>
+            {{ end }}
+            {{ with $first.Publisher }}
+            <span class="publications__publisher"> {{ . | safeHTML }}</span>
+            {{ end }}
+            {{ with $first.Year }}
+            <span class="publications__year"> ({{ . | safeHTML }})</span>
+            {{ end }}
+        </li>
+            </ul>
+        </div>
+        {{ end }}
+    </div>
+    {{ if gt (len $items) 1 }}
+    <div class="{{ $contentClass }} publications">
+        <ul class="publications__list">
+        {{ range after 1 $items }}
+        <li class="publications__item">
+            {{ with .Authors }}
+            <span class="publications__authors">{{ . | safeHTML }}</span>. 
+            {{ end }}
+            {{ if .URL }}
+                <a class="publications__title publications__title--link" href="{{ .URL | safeURL }}" target="_blank" rel="noopener noreferrer"><em>"{{ .Title | safeHTML }}"</em></a>
+            {{ else }}
+                <span class="publications__title"><em>"{{ .Title | safeHTML }}"</em></span>
+            {{ end }}
+            {{ with .Publisher }}
+            <span class="publications__publisher"> {{ . | safeHTML }}</span>
+            {{ end }}
+            {{ with .Year }}
+            <span class="publications__year"> ({{ . | safeHTML }})</span>
+            {{ end }}
+        </li>
+        {{ end }}
+        </ul>
+    </div>
+    {{ end }}
+    </div>
+</div>
+{{ end }}

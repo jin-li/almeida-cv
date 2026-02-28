@@ -52,6 +52,7 @@ $pages: {{ $params.pages | default 1}} !default;
 @import "components/side_section";
 @import "components/experience";
 @import "components/education";
+@import "components/publications";
 @import "components/references";
 @import "components/contact";
 @import "components/avatar";
@@ -62,7 +63,7 @@ $pages: {{ $params.pages | default 1}} !default;
 
 @import "custom";
 
-{{ $defaultSections := slice "name" "profile" "experience" "education" "references" }}
+{{ $defaultSections := slice "name" "profile" "experience" "education" "publications" "references" }}
 {{ $defaultSideSections := slice "avatar" "contacts" "skills" "languages" "diplomas" "interests" }}
 {{ $aliases := dict "contact" "contacts" "language" "languages" "diploma" "diplomas" "interest" "interests" }}
 
@@ -235,8 +236,12 @@ $pages: {{ $params.pages | default 1}} !default;
 
 	{{ if or $childMargin $childPadding }}
 #{{ $sectionName }} > *,
-#{{ $sectionName }} .section__content > *,
-#{{ $sectionName }} .sideSection__content > * {
+#{{ $sectionName }} .section__content > *:not(ul):not(ol),
+#{{ $sectionName }} .sideSection__content > *:not(ul):not(ol),
+#{{ $sectionName }} .section__content > ul > li,
+#{{ $sectionName }} .section__content > ol > li,
+#{{ $sectionName }} .sideSection__content > ul > li,
+#{{ $sectionName }} .sideSection__content > ol > li {
 	{{ if $childMargin }}margin: {{ $childMargin }};{{ end }}
 	{{ if $childPadding }}padding: {{ $childPadding }};{{ end }}
 }

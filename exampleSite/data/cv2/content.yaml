@@ -42,3 +42,20 @@ Skills:
 Languages:
   - Name: 英语
     Level: 雅思 7.5
+
+Publications:
+  - Authors: 张三, 李四
+    Title: 一篇关于计算机科学的论文
+    URL: https://example.com/publication
+    Publisher: 计算机科学会议
+    Year: 2025
+  - Authors: Alice, Bob
+    Title: Another Research Paper
+    URL: https://example.com/publication2
+    Publisher: International Journal of Computer Science
+    Year: 2023
+  - Authors: Alice, et al
+    Title: Yet Another Research Paper
+    URL: https://example.com/publication3
+    Publisher: AI Conference
+    Year: 2021

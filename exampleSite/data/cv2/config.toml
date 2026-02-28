@@ -16,10 +16,10 @@ colorRightColumnHeadingText = "#444444"
 colorRightColumnBodyText = "#555555"
 colorRightColumnIconPrimary = "#ffffff"
 colorRightColumnIconBackground = "#660874"
-footerNote = "2026 © CV 1"
+footerNote = "2026 © CV Chinese"
 swapColumns = true
 
-section_order = ["profile", "experience", "education"]
+section_order = ["profile", "experience", "education", "publications"]
 side_section_order = ["name", "avatar", "contacts", "skills", "languages"]
 
 # Left column (content__left) defaults and sizing
@@ -53,7 +53,7 @@ child_margin = "1rem 0 0 0"
 
 [params.skills]
 margin = "0 0 0 0"
-padding = "0 0 2rem 0"
+padding = "2rem 0 2rem 0"
 child_margin = "0 0 0 0"
 child_padding = "0 0 0 0"
 
@@ -86,6 +86,12 @@ child_margin = "0 0 1rem 0"
 child_padding = "0 0 0 0"
 
 [params.references]
+margin = "0 0 2rem 0"
+padding = "0 0 0 0"
+child_margin = "0 0 0 0"
+child_padding = "0 0 0 0"
+
+[params.publications]
 margin = "0 0 2rem 0"
 padding = "0 0 0 0"
 child_margin = "0 0 0 0"

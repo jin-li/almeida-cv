@@ -1,10 +1,10 @@
-languageCode = "en-us"
+languageCode = "en"
 defaultContentLanguage = "en"
 enableRobotsTXT = true
 enableEmoji = true
 
 theme = "almeida-cv"
-disableKinds = ["page", "section", "taxonomy", "term", "RSS", "sitemap"]
+disableKinds = ["section", "taxonomy", "term", "RSS", "sitemap"]
 
 baseURL = "https://example.com/"
 title = "Example - CV"
@@ -24,11 +24,11 @@ colorRightColumnHeadingText = "#666"
 colorRightColumnBodyText = "#666"
 colorRightColumnIconPrimary = "#fff"
 colorRightColumnIconBackground = "#e3bfb8"
-pages = 1
+pages = 2
 # Set this param to 'true' to swap the bar positions
-swapColumns = false
+swapColumns = true
 # Ordered sections for left column (regular section style)
-section_order = ["profile", "experience", "education", "references"]
+section_order = ["profile", "experience", "education", "publications", "references"]
 # Ordered sections for right column (sideSection style)
 side_section_order = ["avatar", "name", "contacts", "diplomas", "skills", "languages", "interests"]
 footerNote = "2020 © by Inês Almeida   |   ines-almeida.com"
@@ -37,11 +37,11 @@ footerNote = "2020 © by Inês Almeida   |   ines-almeida.com"
 [params.section]
 percent = 70
 margin = "0 0 0 0"
-padding = "1rem 1rem 3rem 2rem"
+padding = "1rem 2rem 3rem 1rem"
 
 # Right column (content__right) defaults and sizing
 [params.side_section]
-percent = 27
+percent = 28
 margin = "0"
 padding = "1rem 1rem"
 
@@ -97,6 +97,12 @@ child_margin = "0 0 1rem 0"
 child_padding = "0 0 0 0"
 
 [params.references]
+margin = "0 0 2rem 0"
+padding = "0 0 0 0"
+child_margin = "0 0 0 0"
+child_padding = "0 0 0 0"
+
+[params.publications]
 margin = "0 0 2rem 0"
 padding = "0 0 0 0"
 child_margin = "0 0 0 0"
