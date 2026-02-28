@@ -1,37 +1,26 @@
-languageCode = "en"
-defaultContentLanguage = "en"
-enableRobotsTXT = true
-enableEmoji = true
-
-theme = "almeida-cv"
-disableKinds = ["section", "taxonomy", "term", "RSS", "sitemap"]
-
-baseURL = "https://example.com/"
-title = "Example - CV"
-#googleAnalytics = ""
+slug = "cv-zh"
+title = "CV Chinese"
+languageCode = "zh-cn"
 
 [params]
 enableMetaTags = true
-colorLight = "#fff"
-colorDark = "#666"
-colorPageBackground = "#ddd"
-colorPrimary = "#e3bfb8"
-colorSecondary = "#aaa"
-colorIconPrimary = "#fff"
-colorIconBackground = "#e3bfb8"
-colorRightColumnBackground = "#f5f5f5"
-colorRightColumnHeadingText = "#666"
-colorRightColumnBodyText = "#666"
-colorRightColumnIconPrimary = "#fff"
-colorRightColumnIconBackground = "#e3bfb8"
-pages = 2
-# Set this param to 'true' to swap the bar positions
+colorLight = "#ffffff"
+colorDark = "#444444"
+colorPageBackground = "#efefef"
+colorPrimary = "#660874"
+colorSecondary = "#999999"
+colorIconPrimary = "#ffffff"
+colorIconBackground = "#660874"
+colorRightColumnBackground = "#fdedff"
+colorRightColumnHeadingText = "#444444"
+colorRightColumnBodyText = "#555555"
+colorRightColumnIconPrimary = "#ffffff"
+colorRightColumnIconBackground = "#660874"
+footerNote = "2026 © CV Chinese"
 swapColumns = true
-# Ordered sections for left column (regular section style)
-section_order = ["profile", "thesis", "experience", "education", "publications", "references"]
-# Ordered sections for right column (sideSection style)
-side_section_order = ["avatar", "name", "contacts", "diplomas", "skills", "languages", "interests"]
-footerNote = "2020 © by Inês Almeida   |   ines-almeida.com"
+
+section_order = ["profile", "experience", "education", "publications"]
+side_section_order = ["name", "avatar", "contacts", "skills", "languages"]
 
 # Left column (content__left) defaults and sizing
 [params.section]
@@ -64,7 +53,7 @@ child_margin = "1rem 0 0 0"
 
 [params.skills]
 margin = "0 0 0 0"
-padding = "0 0 2rem 0"
+padding = "2rem 0 2rem 0"
 child_margin = "0 0 0 0"
 child_padding = "0 0 0 0"
 
@@ -103,12 +92,6 @@ child_margin = "0 0 0 0"
 child_padding = "0 0 0 0"
 
 [params.publications]
-margin = "0 0 2rem 0"
-padding = "0 0 0 0"
-child_margin = "0 0 0 0"
-child_padding = "0 0 0 0"
-
-[params.thesis]
 margin = "0 0 2rem 0"
 padding = "0 0 0 0"
 child_margin = "0 0 0 0"
