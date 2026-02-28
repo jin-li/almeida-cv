@@ -7,7 +7,7 @@
 {{ .Scratch.Set "cv_style_key" "home" }}
 {{ .Scratch.Set "cv_language_code" $languageCode }}
 {{ $pageLang := .Scratch.Get "cv_language_code" }}
-{{ $defaultSections := slice "name" "profile" "experience" "education" "publications" "references" }}
+{{ $defaultSections := slice "name" "profile" "experience" "thesis" "education" "publications" "references" }}
 {{ $defaultSideSections := slice "avatar" "contacts" "skills" "languages" "diplomas" "interests" }}
 {{ $sections := $defaultSections }}
 {{ if $params.section_order }}

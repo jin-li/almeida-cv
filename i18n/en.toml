@@ -24,3 +24,6 @@ other = "Interests"
 
 [publications]
 other = "Publications"
+
+[thesis]
+other = "Thesis"

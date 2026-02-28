@@ -1,5 +1,5 @@
 {{ $sectionName := lower (printf "%v" .name) }}
-{{ $aliases := dict "contact" "contacts" "language" "languages" "diploma" "diplomas" "interest" "interests" "publication" "publications" }}
+{{ $aliases := dict "contact" "contacts" "language" "languages" "diploma" "diplomas" "interest" "interests" "publication" "publications" "theses" "thesis" }}
 {{ $resolvedName := or (index $aliases $sectionName) $sectionName }}
 {{ $partialPath := printf "partials/_%s.html" $resolvedName }}
 {{ $lang := or .lang site.LanguageCode site.Language.Lang "en" }}
