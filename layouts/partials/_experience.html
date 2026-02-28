@@ -27,8 +27,7 @@
         </div>
         {{ if gt (len $items) 0 }}
         {{ $first := index $items 0 }}
-        <div class="{{ $contentClass }}">
-            <div class="experience">
+        <div class="{{ $contentClass }} experience">
                 {{ if $first.Class }}
                 <div class="experience__item {{ $first.Class }}">
                 {{ else }}
@@ -63,13 +62,11 @@
                     </div>
                     {{ end }}
                 </div>
-            </div>
         </div>
         {{ end }}
     </div>
     {{ if gt (len $items) 1 }}
-    <div class="{{ $contentClass }}">
-        <div class="experience">
+    <div class="{{ $contentClass }} experience">
             {{ range after 1 $items }}
             {{ if .Class }}
             <div class="experience__item {{ .Class }}">
@@ -106,7 +103,6 @@
                 {{ end }}
             </div>
             {{ end }}
-        </div>
     </div>
     {{ end }}
 </div>

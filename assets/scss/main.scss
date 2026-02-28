@@ -39,3 +39,174 @@ $pages: {{ .Site.Params.pages | default 1}} !default;
 @import "components/404";
 
 @import "custom";
+
+{{ $defaultSections := slice "name" "profile" "experience" "education" "references" }}
+{{ $defaultSideSections := slice "avatar" "contacts" "skills" "languages" "diplomas" "interests" }}
+{{ $aliases := dict "contact" "contacts" "language" "languages" "diploma" "diplomas" "interest" "interests" }}
+
+{{ $sections := $defaultSections }}
+{{ if .Site.Params.section_order }}
+	{{ $sections = .Site.Params.section_order }}
+{{ else if .Site.Params.sectionOrder }}
+	{{ $sections = .Site.Params.sectionOrder }}
+{{ else if and .Site.Params.section (reflect.IsSlice .Site.Params.section) }}
+	{{ $sections = .Site.Params.section }}
+{{ else if and .Site.Params.sections (reflect.IsSlice .Site.Params.sections) }}
+	{{ $sections = .Site.Params.sections }}
+{{ end }}
+
+{{ $sideSections := $defaultSideSections }}
+{{ if .Site.Params.side_section_order }}
+	{{ $sideSections = .Site.Params.side_section_order }}
+{{ else if .Site.Params.sideSectionOrder }}
+	{{ $sideSections = .Site.Params.sideSectionOrder }}
+{{ else if and .Site.Params.side_section (reflect.IsSlice .Site.Params.side_section) }}
+	{{ $sideSections = .Site.Params.side_section }}
+{{ else if and .Site.Params.sideSections (reflect.IsSlice .Site.Params.sideSections) }}
+	{{ $sideSections = .Site.Params.sideSections }}
+{{ end }}
+
+{{ $sectionConfig := dict }}
+{{ if and .Site.Params.section (reflect.IsMap .Site.Params.section) }}
+	{{ $sectionConfig = merge $sectionConfig .Site.Params.section }}
+{{ end }}
+{{ if and .Site.Params.layout (reflect.IsMap .Site.Params.layout) }}
+	{{ with index .Site.Params.layout "section" }}
+		{{ if reflect.IsMap . }}
+			{{ $sectionConfig = merge $sectionConfig . }}
+		{{ end }}
+	{{ end }}
+{{ end }}
+
+{{ $sideSectionConfig := dict }}
+{{ if and .Site.Params.side_section (reflect.IsMap .Site.Params.side_section) }}
+	{{ $sideSectionConfig = merge $sideSectionConfig .Site.Params.side_section }}
+{{ end }}
+{{ if and .Site.Params.layout (reflect.IsMap .Site.Params.layout) }}
+	{{ with index .Site.Params.layout "side_section" }}
+		{{ if reflect.IsMap . }}
+			{{ $sideSectionConfig = merge $sideSectionConfig . }}
+		{{ end }}
+	{{ end }}
+{{ end }}
+
+{{ $leftPercent := 70.0 }}
+{{ $rightPercent := 30.0 }}
+{{ $hasLeftPercent := false }}
+{{ $hasRightPercent := false }}
+
+{{ with index $sectionConfig "percent" }}
+	{{ $leftPercent = float . }}
+	{{ $hasLeftPercent = true }}
+{{ end }}
+{{ with index $sideSectionConfig "percent" }}
+	{{ $rightPercent = float . }}
+	{{ $hasRightPercent = true }}
+{{ end }}
+
+{{ if and $hasLeftPercent (not $hasRightPercent) }}
+	{{ $rightPercent = sub 100 $leftPercent }}
+{{ else if and $hasRightPercent (not $hasLeftPercent) }}
+	{{ $leftPercent = sub 100 $rightPercent }}
+{{ end }}
+
+{{ $leftMargin := "0" }}
+{{ with index $sectionConfig "margin" }}
+	{{ $leftMargin = printf "%v" . }}
+{{ end }}
+
+{{ $rightMargin := "0" }}
+{{ with index $sideSectionConfig "margin" }}
+	{{ $rightMargin = printf "%v" . }}
+{{ end }}
+
+{{ $leftPadding := "3rem 4rem" }}
+{{ with index $sectionConfig "padding" }}
+	{{ $leftPadding = printf "%v" . }}
+{{ end }}
+
+{{ $rightPadding := "2rem 3rem" }}
+{{ with index $sideSectionConfig "padding" }}
+	{{ $rightPadding = printf "%v" . }}
+{{ end }}
+
+.content__left {
+	width: {{ printf "%.4g%%" $leftPercent }};
+	margin: {{ $leftMargin }};
+	padding: {{ $leftPadding }};
+}
+
+.content__right {
+	width: {{ printf "%.4g%%" $rightPercent }};
+	margin: {{ $rightMargin }};
+	padding: {{ $rightPadding }};
+}
+
+{{ $allSections := slice }}
+{{ range $sections }}
+	{{ $resolved := or (index $aliases (lower (printf "%v" .))) (lower (printf "%v" .)) }}
+	{{ if not (in $allSections $resolved) }}
+		{{ $allSections = $allSections | append $resolved }}
+	{{ end }}
+{{ end }}
+{{ range $sideSections }}
+	{{ $resolved := or (index $aliases (lower (printf "%v" .))) (lower (printf "%v" .)) }}
+	{{ if not (in $allSections $resolved) }}
+		{{ $allSections = $allSections | append $resolved }}
+	{{ end }}
+{{ end }}
+
+{{ range $allSections }}
+	{{ $sectionName := . }}
+	{{ $itemConfig := dict }}
+
+	{{ with index $.Site.Params $sectionName }}
+		{{ if reflect.IsMap . }}
+			{{ $itemConfig = merge $itemConfig . }}
+		{{ end }}
+	{{ end }}
+
+	{{ if and $.Site.Params.sections (reflect.IsMap $.Site.Params.sections) }}
+		{{ with index $.Site.Params.sections $sectionName }}
+			{{ if reflect.IsMap . }}
+				{{ $itemConfig = merge $itemConfig . }}
+			{{ end }}
+		{{ end }}
+	{{ end }}
+
+	{{ $sectionMargin := "" }}
+	{{ with index $itemConfig "margin" }}
+		{{ $sectionMargin = printf "%v" . }}
+	{{ end }}
+
+	{{ $sectionPadding := "" }}
+	{{ with index $itemConfig "padding" }}
+		{{ $sectionPadding = printf "%v" . }}
+	{{ end }}
+
+	{{ $childMargin := "" }}
+	{{ with index $itemConfig "child_margin" }}
+		{{ $childMargin = printf "%v" . }}
+	{{ end }}
+
+	{{ $childPadding := "" }}
+	{{ with index $itemConfig "child_padding" }}
+		{{ $childPadding = printf "%v" . }}
+	{{ end }}
+
+	{{ if or $sectionMargin $sectionPadding }}
+#{{ $sectionName }} {
+	{{ if $sectionMargin }}margin: {{ $sectionMargin }};{{ end }}
+	{{ if $sectionPadding }}padding: {{ $sectionPadding }};{{ end }}
+}
+	{{ end }}
+
+	{{ if or $childMargin $childPadding }}
+#{{ $sectionName }} > *,
+#{{ $sectionName }} .section__content > *,
+#{{ $sectionName }} .sideSection__content > * {
+	{{ if $childMargin }}margin: {{ $childMargin }};{{ end }}
+	{{ if $childPadding }}padding: {{ $childPadding }};{{ end }}
+}
+	{{ end }}
+{{ end }}

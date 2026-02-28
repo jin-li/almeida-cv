@@ -2,8 +2,27 @@
 {{ .Scratch.Set "data" $data }}
 {{ $defaultSections := slice "name" "profile" "experience" "education" "references" }}
 {{ $defaultSideSections := slice "avatar" "contacts" "skills" "languages" "diplomas" "interests" }}
-{{ $sections := or .Site.Params.section .Site.Params.sections $defaultSections }}
-{{ $sideSections := or .Site.Params.side_section .Site.Params.sideSections $defaultSideSections }}
+{{ $sections := $defaultSections }}
+{{ if .Site.Params.section_order }}
+    {{ $sections = .Site.Params.section_order }}
+{{ else if .Site.Params.sectionOrder }}
+    {{ $sections = .Site.Params.sectionOrder }}
+{{ else if and .Site.Params.section (reflect.IsSlice .Site.Params.section) }}
+    {{ $sections = .Site.Params.section }}
+{{ else if and .Site.Params.sections (reflect.IsSlice .Site.Params.sections) }}
+    {{ $sections = .Site.Params.sections }}
+{{ end }}
+
+{{ $sideSections := $defaultSideSections }}
+{{ if .Site.Params.side_section_order }}
+    {{ $sideSections = .Site.Params.side_section_order }}
+{{ else if .Site.Params.sideSectionOrder }}
+    {{ $sideSections = .Site.Params.sideSectionOrder }}
+{{ else if and .Site.Params.side_section (reflect.IsSlice .Site.Params.side_section) }}
+    {{ $sideSections = .Site.Params.side_section }}
+{{ else if and .Site.Params.sideSections (reflect.IsSlice .Site.Params.sideSections) }}
+    {{ $sideSections = .Site.Params.sideSections }}
+{{ end }}
 <!DOCTYPE html>
 <html lang="en">
     {{ partial "head.html" . }}

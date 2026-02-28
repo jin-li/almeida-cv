@@ -4,7 +4,7 @@
         min-width: 49%;
         @include avoid-break;
         &:not(:first-child) {
-            padding-top: 1.5rem;
+            padding-top: 0rem;
         }
     }
 

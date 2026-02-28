@@ -28,7 +28,76 @@ pages = 1
 # Set this param to 'true' to swap the bar positions
 swapColumns = false
 # Ordered sections for left column (regular section style)
-section = ["name", "profile", "experience", "education", "references"]
+section_order = ["profile", "experience", "education", "references"]
 # Ordered sections for right column (sideSection style)
-side_section = ["avatar", "contacts", "skills", "languages", "diplomas", "interests"]
+side_section_order = ["avatar", "name", "contacts", "diplomas", "skills", "languages", "interests"]
 footerNote = "2020 © by Inês Almeida   |   ines-almeida.com"
+
+# Left column (content__left) defaults and sizing
+[params.section]
+percent = 70
+margin = "0 0 0 0"
+padding = "1rem 1rem 3rem 2rem"
+
+# Right column (content__right) defaults and sizing
+[params.side_section]
+percent = 27
+margin = "0"
+padding = "1rem 1rem"
+
+# Per-section overrides (wrapper)
+[params.avatar]
+margin = "0 0 0 0"
+padding = "0 0 0 0"
+
+[params.name]
+margin = "0 0 0 0"
+padding = "0 0 0 0"
+
+[params.contacts]
+margin = "0 0 0 0"
+padding = "0 0 0 0"
+
+[params.diplomas]
+margin = "0 0 2rem 0"
+child_margin = "1rem 0 0 0"
+
+[params.skills]
+margin = "0 0 0 0"
+padding = "0 0 2rem 0"
+child_margin = "0 0 0 0"
+child_padding = "0 0 0 0"
+
+[params.languages]
+margin = "0 0 0 0"
+padding = "0 0 2rem 0"
+child_margin = "0 0 0 0"
+child_padding = "0 0 0 0"
+
+[params.interests]
+margin = "0 0 0 0"
+padding = "0 0 2rem 0"
+child_margin = "0 0 0 0"
+child_padding = "0 0 0 0"
+
+[params.profile]
+margin = "0 0 0 0"
+padding = "0 0 2rem 0"
+
+[params.education]
+margin = "0 0 2rem 0"
+padding = "0 0 0 0"
+child_margin = "0 0 0 0"
+child_padding = "0 0 0 0"
+
+[params.experience]
+margin = "0 0 0 0"
+padding = "0 0 0 0"
+child_margin = "0 0 1rem 0"
+child_padding = "0 0 0 0"
+
+[params.references]
+margin = "0 0 2rem 0"
+padding = "0 0 0 0"
+child_margin = "0 0 0 0"
+child_padding = "0 0 0 0"
