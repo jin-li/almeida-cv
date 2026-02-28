@@ -1,12 +1,59 @@
-{{ $data := or (index .Site.Data .Site.Language.Lang).content .Site.Data.content }}
-{{ $params := .Site.Params }}
-{{ $languageCode := or .Site.LanguageCode .Site.Language.Lang "en" }}
+{{ $cvKey := .Params.cv_key }}
+{{ $entry := index .Site.Data $cvKey }}
+{{ $data := index $entry "content" }}
+{{ $config := index $entry "config" }}
+
+{{ if not $data }}
+    {{ errorf "No content.yaml found for CV data folder '%s'" $cvKey }}
+{{ end }}
+
+{{ $params := merge .Site.Params (dict) }}
+{{ if reflect.IsMap $config }}
+    {{ $topLevelOverrides := dict }}
+    {{ range $k, $v := $config }}
+        {{ if and (ne $k "slug") (ne $k "title") (ne $k "params") }}
+            {{ $topLevelOverrides = merge $topLevelOverrides (dict $k $v) }}
+        {{ end }}
+    {{ end }}
+    {{ if gt (len $topLevelOverrides) 0 }}
+        {{ range $k, $v := $topLevelOverrides }}
+            {{ $existing := index $params $k }}
+            {{ if and (reflect.IsMap $existing) (reflect.IsMap $v) }}
+                {{ $params = merge $params (dict $k (merge $existing $v)) }}
+            {{ else }}
+                {{ $params = merge $params (dict $k $v) }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+    {{ with index $config "params" }}
+        {{ if reflect.IsMap . }}
+            {{ range $k, $v := . }}
+                {{ $existing := index $params $k }}
+                {{ if and (reflect.IsMap $existing) (reflect.IsMap $v) }}
+                    {{ $params = merge $params (dict $k (merge $existing $v)) }}
+                {{ else }}
+                    {{ $params = merge $params (dict $k $v) }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{ $languageCode := or .Lang .Site.LanguageCode .Site.Language.Lang "en" }}
+{{ if reflect.IsMap $config }}
+    {{ with index $config "languageCode" }}
+        {{ $languageCode = printf "%v" . }}
+    {{ end }}
+{{ end }}
+
+{{ $styleKey := printf "cv-%s" (replace (replace .Params.cv_slug "/" "-") "." "-") }}
 {{ .Scratch.Set "data" $data }}
 {{ .Scratch.Set "cv_params" $params }}
-{{ .Scratch.Set "cv_title" .Site.Title }}
-{{ .Scratch.Set "cv_style_key" "home" }}
+{{ .Scratch.Set "cv_title" .Title }}
+{{ .Scratch.Set "cv_style_key" $styleKey }}
 {{ .Scratch.Set "cv_language_code" $languageCode }}
 {{ $pageLang := .Scratch.Get "cv_language_code" }}
+
 {{ $defaultSections := slice "name" "profile" "experience" "education" "references" }}
 {{ $defaultSideSections := slice "avatar" "contacts" "skills" "languages" "diplomas" "interests" }}
 {{ $sections := $defaultSections }}

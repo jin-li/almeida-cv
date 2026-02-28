@@ -23,7 +23,7 @@
 <div id="experience" class="{{ $wrapperClass }}">
     <div class="{{ $leadClass }}">
         <div class="{{ $headingClass }}">
-            <h2 class="{{ $titleClass }}">{{ i18n "experience" }}</h2>
+            <h2 class="{{ $titleClass }}">{{ partial "_t.html" (dict "key" "experience" "lang" ._lang) }}</h2>
         </div>
         {{ if gt (len $items) 0 }}
         {{ $first := index $items 0 }}

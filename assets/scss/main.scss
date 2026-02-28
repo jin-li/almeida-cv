@@ -1,22 +1,44 @@
-$color-light: {{ .Site.Params.colorLight | default "#fff"}} !default;
-$color-dark: {{ .Site.Params.colorDark | default "#666"}} !default;
-$color-page-background: {{ .Site.Params.colorPageBackground | default "#ddd" }} !default;
+{{ $params := or (.Scratch.Get "cv_params") .Site.Params }}
 
-$color-primary: {{ .Site.Params.colorPrimary | default "#e3bfb8"}} !default;
+$color-light: {{ $params.colorLight | default "#fff"}} !default;
+$color-dark: {{ $params.colorDark | default "#666"}} !default;
+$color-page-background: {{ $params.colorPageBackground | default "#ddd" }} !default;
 
-$color-secondary: {{ .Site.Params.colorSecondary | default "#aaa"}} !default;
+$color-primary: {{ $params.colorPrimary | default "#e3bfb8"}} !default;
 
-$color-icon-primary: {{ .Site.Params.colorIconPrimary | default "#fff"}} !default;
-$color-icon-background: {{ .Site.Params.colorIconBackground | default "#e3bfb8"}} !default;
+$color-secondary: {{ $params.colorSecondary | default "#aaa"}} !default;
 
-$color-right-col-background: {{ .Site.Params.colorRightColumnBackground | default "#f5f5f5" }} !default;
-$color-right-col-heading-text: {{ .Site.Params.colorRightColumnHeadingText | default "#666" }} !default;
-$color-right-col-body-text: {{ .Site.Params.colorRightColumnBodyText | default "#666" }} !default;
-$color-right-col-icon-primary: {{ .Site.Params.colorRightColumnIconPrimary | default "#fff" }} !default;
-$color-right-col-icon-background: {{ .Site.Params.colorRightColumnIconBackground | default "#e3bfb8" }} !default;
-$footer-note: '{{ .Site.Params.footerNote| default "2020 © by Inês Almeida   |   ines-almeida.com " }}' !default;
+$color-icon-primary: {{ $params.colorIconPrimary | default "#fff"}} !default;
+$color-icon-background: {{ $params.colorIconBackground | default "#e3bfb8"}} !default;
 
-$pages: {{ .Site.Params.pages | default 1}} !default;
+$color-right-col-background: {{ $params.colorRightColumnBackground | default "#f5f5f5" }} !default;
+$color-right-col-heading-text: {{ $params.colorRightColumnHeadingText | default "#666" }} !default;
+$color-right-col-body-text: {{ $params.colorRightColumnBodyText | default "#666" }} !default;
+$color-right-col-icon-primary: {{ $params.colorRightColumnIconPrimary | default "#fff" }} !default;
+$color-right-col-icon-background: {{ $params.colorRightColumnIconBackground | default "#e3bfb8" }} !default;
+$footer-note: '{{ $params.footerNote| default "2020 © by Inês Almeida   |   ines-almeida.com " }}' !default;
+
+$pages: {{ $params.pages | default 1}} !default;
+
+{{ $contentMargin := "0" }}
+{{ $contentPadding := "0" }}
+{{ $contentRightOffset := "1rem" }}
+{{ $contentSwappedRightOffset := "1rem" }}
+
+{{ if and $params.content (reflect.IsMap $params.content) }}
+	{{ with index $params.content "margin" }}
+		{{ $contentMargin = printf "%v" . }}
+	{{ end }}
+	{{ with index $params.content "padding" }}
+		{{ $contentPadding = printf "%v" . }}
+	{{ end }}
+	{{ with index $params.content "right_offset" }}
+		{{ $contentRightOffset = printf "%v" . }}
+	{{ end }}
+	{{ with index $params.content "swapped_right_offset" }}
+		{{ $contentSwappedRightOffset = printf "%v" . }}
+	{{ end }}
+{{ end }}
 
 @import "abstract";
 @import "functions";
@@ -45,33 +67,33 @@ $pages: {{ .Site.Params.pages | default 1}} !default;
 {{ $aliases := dict "contact" "contacts" "language" "languages" "diploma" "diplomas" "interest" "interests" }}
 
 {{ $sections := $defaultSections }}
-{{ if .Site.Params.section_order }}
-	{{ $sections = .Site.Params.section_order }}
-{{ else if .Site.Params.sectionOrder }}
-	{{ $sections = .Site.Params.sectionOrder }}
-{{ else if and .Site.Params.section (reflect.IsSlice .Site.Params.section) }}
-	{{ $sections = .Site.Params.section }}
-{{ else if and .Site.Params.sections (reflect.IsSlice .Site.Params.sections) }}
-	{{ $sections = .Site.Params.sections }}
+{{ if $params.section_order }}
+	{{ $sections = $params.section_order }}
+{{ else if $params.sectionOrder }}
+	{{ $sections = $params.sectionOrder }}
+{{ else if and $params.section (reflect.IsSlice $params.section) }}
+	{{ $sections = $params.section }}
+{{ else if and $params.sections (reflect.IsSlice $params.sections) }}
+	{{ $sections = $params.sections }}
 {{ end }}
 
 {{ $sideSections := $defaultSideSections }}
-{{ if .Site.Params.side_section_order }}
-	{{ $sideSections = .Site.Params.side_section_order }}
-{{ else if .Site.Params.sideSectionOrder }}
-	{{ $sideSections = .Site.Params.sideSectionOrder }}
-{{ else if and .Site.Params.side_section (reflect.IsSlice .Site.Params.side_section) }}
-	{{ $sideSections = .Site.Params.side_section }}
-{{ else if and .Site.Params.sideSections (reflect.IsSlice .Site.Params.sideSections) }}
-	{{ $sideSections = .Site.Params.sideSections }}
+{{ if $params.side_section_order }}
+	{{ $sideSections = $params.side_section_order }}
+{{ else if $params.sideSectionOrder }}
+	{{ $sideSections = $params.sideSectionOrder }}
+{{ else if and $params.side_section (reflect.IsSlice $params.side_section) }}
+	{{ $sideSections = $params.side_section }}
+{{ else if and $params.sideSections (reflect.IsSlice $params.sideSections) }}
+	{{ $sideSections = $params.sideSections }}
 {{ end }}
 
 {{ $sectionConfig := dict }}
-{{ if and .Site.Params.section (reflect.IsMap .Site.Params.section) }}
-	{{ $sectionConfig = merge $sectionConfig .Site.Params.section }}
+{{ if and $params.section (reflect.IsMap $params.section) }}
+	{{ $sectionConfig = merge $sectionConfig $params.section }}
 {{ end }}
-{{ if and .Site.Params.layout (reflect.IsMap .Site.Params.layout) }}
-	{{ with index .Site.Params.layout "section" }}
+{{ if and $params.layout (reflect.IsMap $params.layout) }}
+	{{ with index $params.layout "section" }}
 		{{ if reflect.IsMap . }}
 			{{ $sectionConfig = merge $sectionConfig . }}
 		{{ end }}
@@ -79,11 +101,11 @@ $pages: {{ .Site.Params.pages | default 1}} !default;
 {{ end }}
 
 {{ $sideSectionConfig := dict }}
-{{ if and .Site.Params.side_section (reflect.IsMap .Site.Params.side_section) }}
-	{{ $sideSectionConfig = merge $sideSectionConfig .Site.Params.side_section }}
+{{ if and $params.side_section (reflect.IsMap $params.side_section) }}
+	{{ $sideSectionConfig = merge $sideSectionConfig $params.side_section }}
 {{ end }}
-{{ if and .Site.Params.layout (reflect.IsMap .Site.Params.layout) }}
-	{{ with index .Site.Params.layout "side_section" }}
+{{ if and $params.layout (reflect.IsMap $params.layout) }}
+	{{ with index $params.layout "side_section" }}
 		{{ if reflect.IsMap . }}
 			{{ $sideSectionConfig = merge $sideSectionConfig . }}
 		{{ end }}
@@ -136,10 +158,20 @@ $pages: {{ .Site.Params.pages | default 1}} !default;
 	padding: {{ $leftPadding }};
 }
 
+.content {
+	margin: {{ $contentMargin }};
+	padding: {{ $contentPadding }};
+}
+
 .content__right {
 	width: {{ printf "%.4g%%" $rightPercent }};
 	margin: {{ $rightMargin }};
 	padding: {{ $rightPadding }};
+	right: {{ $contentRightOffset }};
+}
+
+.content__swapped__right {
+	left: {{ $contentSwappedRightOffset }};
 }
 
 {{ $allSections := slice }}
@@ -160,14 +192,14 @@ $pages: {{ .Site.Params.pages | default 1}} !default;
 	{{ $sectionName := . }}
 	{{ $itemConfig := dict }}
 
-	{{ with index $.Site.Params $sectionName }}
+	{{ with index $params $sectionName }}
 		{{ if reflect.IsMap . }}
 			{{ $itemConfig = merge $itemConfig . }}
 		{{ end }}
 	{{ end }}
 
-	{{ if and $.Site.Params.sections (reflect.IsMap $.Site.Params.sections) }}
-		{{ with index $.Site.Params.sections $sectionName }}
+	{{ if and $params.sections (reflect.IsMap $params.sections) }}
+		{{ with index $params.sections $sectionName }}
 			{{ if reflect.IsMap . }}
 				{{ $itemConfig = merge $itemConfig . }}
 			{{ end }}

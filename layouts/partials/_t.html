@@ -1,0 +1,37 @@
+{{- $key := .key -}}
+{{- $lang := lower (printf "%v" (or .lang "en")) -}}
+{{- $result := "" -}}
+
+{{- $candidates := slice $lang -}}
+{{- if in $lang "-" -}}
+    {{- $candidates = $candidates | append (index (split $lang "-") 0) -}}
+{{- end -}}
+{{- if not (in $candidates "en") -}}
+    {{- $candidates = $candidates | append "en" -}}
+{{- end -}}
+
+{{- range $candidate := $candidates -}}
+    {{- if not $result -}}
+        {{- $paths := slice (printf "i18n/%s.toml" $candidate) (printf "themes/almeida-cv/i18n/%s.toml" $candidate) -}}
+        {{- range $path := $paths -}}
+            {{- if and (not $result) (fileExists $path) -}}
+                {{- $translations := transform.Unmarshal (readFile $path) -}}
+                {{- with index $translations $key -}}
+                    {{- if reflect.IsMap . -}}
+                        {{- with index . "other" -}}
+                            {{- $result = printf "%v" . -}}
+                        {{- end -}}
+                    {{- else -}}
+                        {{- $result = printf "%v" . -}}
+                    {{- end -}}
+                {{- end -}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+
+{{- if $result -}}
+    {{- $result -}}
+{{- else -}}
+    {{- i18n $key -}}
+{{- end -}}

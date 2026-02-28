@@ -2,7 +2,8 @@
 {{ $aliases := dict "contact" "contacts" "language" "languages" "diploma" "diplomas" "interest" "interests" }}
 {{ $resolvedName := or (index $aliases $sectionName) $sectionName }}
 {{ $partialPath := printf "partials/_%s.html" $resolvedName }}
+{{ $lang := or .lang site.LanguageCode site.Language.Lang "en" }}
 
 {{ if templates.Exists $partialPath }}
-    {{ partial (printf "_%s.html" $resolvedName) (merge .data (dict "_isSide" .isSide)) }}
+    {{ partial (printf "_%s.html" $resolvedName) (merge .data (dict "_isSide" .isSide "_lang" $lang)) }}
 {{ end }}
