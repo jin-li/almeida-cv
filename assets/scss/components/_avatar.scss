@@ -6,7 +6,7 @@
 
     &__container {
         @include hz-center;
-        width: 100%;
+        width: 90%;
         clip-path: circle(50% at 50% 56%);
         height: $width-right-col - 8rem;
         text-align: center;

@@ -20,8 +20,8 @@ $footer-note: '{{ $params.footerNote| default "2020 © by Inês Almeida   |   in
 
 $pages: {{ $params.pages | default 1}} !default;
 
-{{ $contentMargin := "0" }}
-{{ $contentPadding := "0" }}
+{{ $contentMargin := "" }}
+{{ $contentPadding := "" }}
 {{ $contentRightOffset := "1rem" }}
 {{ $contentSwappedRightOffset := "1rem" }}
 
@@ -159,8 +159,8 @@ $pages: {{ $params.pages | default 1}} !default;
 }
 
 .content {
-	margin: {{ $contentMargin }};
-	padding: {{ $contentPadding }};
+	{{ if $contentMargin }}margin: {{ $contentMargin }};{{ end }}
+	{{ if $contentPadding }}padding: {{ $contentPadding }};{{ end }}
 }
 
 .content__right {

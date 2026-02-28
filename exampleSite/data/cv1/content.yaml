@@ -5,7 +5,7 @@ Name:
   align: center
 
 Avatar:
-  Photo: img/avatar.jpg
+  Photo: ../img/avatar.jpg
 
 Contacts:
   - Icon: fas fa-phone

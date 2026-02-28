@@ -1,0 +1,44 @@
+Name:
+  first: 三
+  last: 张
+  order: last_first
+  align: center
+
+Avatar:
+  Photo: ../img/avatar.jpg
+
+Contacts:
+  - Icon: fas fa-envelope
+    Info: demo@example.com
+  - Icon: fas fa-globe
+    Info: <a class="contact__link" href="https://example.com" target="_blank">example.com</a>
+
+Profile: 中文个人简介示例
+
+Experience:
+  - Employer: 甲公司
+    Place: 北京, 中国
+    Positions:
+      - Title: 软件工程师
+        Date: 2023 - 至今
+        Details:
+          - 负责公司核心产品的开发和维护
+          - 与跨部门团队合作，推动项目进展
+        Badges: ["Python", "Hugo", "Docker"]
+
+Education:
+  - Course: 计算机科学与技术
+    Place: 清华大学, 北京
+    Date: 2019 - 2021
+    Details: 硕士学位，主修软件工程，GPA 3.9/4.0
+
+Skills:
+  - Family: 编程语言
+    Items:
+      - Python
+      - Go
+      - JavaScript
+
+Languages:
+  - Name: 英语
+    Level: 雅思 7.5
