@@ -9,42 +9,119 @@
     {{ $headingClass := "section__heading" }}
     {{ $titleClass := "section__title" }}
     {{ $contentClass := "section__content" }}
-    
+
     {{ if $isSide }}
         {{ $wrapperClass = "sideSection" }}
         {{ $headingClass = "sideSection__heading" }}
         {{ $titleClass = "sideSection__title" }}
         {{ $contentClass = "sideSection__content" }}
     {{ end }}
-    
+
+    {{ $leadClass := printf "%s__lead" $wrapperClass }}
+    {{ $items := .References }}
+
 <div id="references" class="{{ $wrapperClass }}">
-    <div class="{{ $headingClass }}">
-        <h2 class="{{ $titleClass }}">{{ partial "_t.html" (dict "key" "references" "lang" ._lang) }}</h2>
-    </div>
-    <div class="{{ $contentClass }}">
-        <div class="references">
-            {{ range .References }}
-            <div class="references__item">
-                <div class="references__person">
-                    <div class="references__header">
-                        <h3 class="references__name">
-                            {{ .Name | safeHTML}}
-                        </h3>
-                    </div>
-                    <div class="references__subheader">
-                        <h4 class="references__relation">
-                            {{ .Relation | safeHTML}}
-                        </h4>
-                    </div>
-                    {{ range .Contacts }}
-                        <li class="references__contact">
-                            <i class="{{ .Icon }}"></i><span>{{ .Info | safeHTML }}</span>
-                        </li>
-                    {{ end }}
-                </div>
+    <div class="references__timeline">
+        <div class="{{ $leadClass }}">
+            <div class="{{ $headingClass }}">
+                <h2 class="{{ $titleClass }}">{{ partial "_t.html" (dict "key" "references" "lang" ._lang) }}</h2>
+            </div>
+
+            {{ if gt (len $items) 0 }}
+            {{ $first := index $items 0 }}
+            <div class="{{ $contentClass }} references">
+                <ul class="references__items">
+                    <li class="references__item">
+                        {{ if $isSide }}
+                            {{ with $first.Name }}
+                            <div class="references__line references__line--name"><strong>{{ . | safeHTML }}</strong></div>
+                            {{ end }}
+                            {{ with $first.Relation }}
+                            <div class="references__line references__line--relation">{{ . | safeHTML }}</div>
+                            {{ end }}
+                            {{ with $first.Position }}
+                            <div class="references__line references__line--position">{{ . | safeHTML }}</div>
+                            {{ end }}
+                            {{ with $first.Contacts }}
+                            <ul class="references__contacts references__contacts--stack">
+                                {{ range . }}
+                                <li class="references__contact">
+                                    {{ with .Icon }}<i class="{{ . }}"></i>{{ end }}
+                                    {{ with .Info }}<span>{{ . | safeHTML }}</span>{{ end }}
+                                </li>
+                                {{ end }}
+                            </ul>
+                            {{ end }}
+                        {{ else }}
+                            <div class="references__summary">
+                                {{ with $first.Name }}<span class="references__name"><strong>{{ . | safeHTML }}</strong></span>{{ end }}
+                                {{ with $first.Relation }}<span class="references__relation">({{ . | safeHTML }})</span>{{ end }}
+                                {{ with $first.Position }}<span class="references__position">{{ . | safeHTML }}</span>{{ end }}
+                            </div>
+                            {{ with $first.Contacts }}
+                            <ul class="references__contacts references__contacts--inline">
+                                {{ range . }}
+                                <li class="references__contact">
+                                    {{ with .Icon }}<i class="{{ . }}"></i>{{ end }}
+                                    {{ with .Info }}<span>{{ . | safeHTML }}</span>{{ end }}
+                                </li>
+                                {{ end }}
+                            </ul>
+                            {{ end }}
+                        {{ end }}
+                    </li>
+                </ul>
             </div>
             {{ end }}
         </div>
+
+        {{ if gt (len $items) 1 }}
+        <div class="{{ $contentClass }} references">
+            <ul class="references__items">
+                {{ range after 1 $items }}
+                <li class="references__item">
+                    {{ if $isSide }}
+                        {{ with .Name }}
+                        <div class="references__line references__line--name"><strong>{{ . | safeHTML }}</strong></div>
+                        {{ end }}
+                        {{ with .Relation }}
+                        <div class="references__line references__line--relation">{{ . | safeHTML }}</div>
+                        {{ end }}
+                        {{ with .Position }}
+                        <div class="references__line references__line--position">{{ . | safeHTML }}</div>
+                        {{ end }}
+                        {{ with .Contacts }}
+                        <ul class="references__contacts references__contacts--stack">
+                            {{ range . }}
+                            <li class="references__contact">
+                                {{ with .Icon }}<i class="{{ . }}"></i>{{ end }}
+                                {{ with .Info }}<span>{{ . | safeHTML }}</span>{{ end }}
+                            </li>
+                            {{ end }}
+                        </ul>
+                        {{ end }}
+                    {{ else }}
+                        <div class="references__summary">
+                            {{ with .Name }}<span class="references__name"><strong>{{ . | safeHTML }}</strong></span>{{ end }}
+                            {{ with .Relation }}<span class="references__relation">({{ . | safeHTML }})</span>{{ end }}
+                            {{ with .Position }}<span class="references__position">{{ . | safeHTML }}</span>{{ end }}
+                        </div>
+                        {{ with .Contacts }}
+                        <ul class="references__contacts references__contacts--inline">
+                            {{ range . }}
+                            <li class="references__contact">
+                                {{ with .Icon }}<i class="{{ . }}"></i>{{ end }}
+                                {{ with .Info }}<span>{{ . | safeHTML }}</span>{{ end }}
+                            </li>
+                            {{ end }}
+                        </ul>
+                        {{ end }}
+                    {{ end }}
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+        {{ end }}
     </div>
 </div>
 {{ end }}
