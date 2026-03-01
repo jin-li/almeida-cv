@@ -4,12 +4,8 @@
         {{ $content := index $entry "content" }}
         {{ if and (reflect.IsMap $config) $content }}
             {{ $slug := "" }}
-            {{ $languageCode := or site.LanguageCode site.Language.Lang "en" }}
             {{ with index $config "slug" }}
                 {{ $slug = strings.Trim (printf "%v" .) "/ " }}
-            {{ end }}
-            {{ with index $config "languageCode" }}
-                {{ $languageCode = strings.Trim (printf "%v" .) " " }}
             {{ end }}
 
             {{ if $slug }}
@@ -23,7 +19,6 @@
                     "type" "cv"
                     "path" $slug
                     "title" $title
-                    "lang" $languageCode
                     "params" (dict
                         "cv_key" $key
                         "cv_slug" $slug
