@@ -40,7 +40,7 @@ padding = "1rem 1rem"
 badges_margin = "0 0 0 0"
 badges_padding = "0 0 0 0"
 badge_margin = "0 0 0 0"
-badge_padding = "0 0.2rem 0 0.2rem"
+badge_padding = "0 0.4rem 0 0.4rem"
 
 # Per-section overrides (wrapper)
 [params.avatar]
@@ -57,7 +57,7 @@ padding = "0 0 0 0"
 
 [params.diplomas]
 margin = "0 0 2rem 0"
-child_margin = "1rem 0 0 0"
+child_margin = "0 0 0.5rem 0"
 
 [params.skills]
 margin = "0 0 0 0"
@@ -92,6 +92,11 @@ margin = "0 0 0 0"
 padding = "0 0 0 0"
 child_margin = "0 0 1rem 0"
 child_padding = "0 0 0 0"
+# Optional per-section badge spacing override
+# badges_margin = "0.5rem 0"
+# badges_padding = "0"
+# badge_margin = "0 0 0 0.35rem"
+# badge_padding = "0.1rem 0.6rem"
 
 [params.references]
 margin = "0 0 2rem 0"
@@ -110,3 +115,8 @@ margin = "0 0 2rem 0"
 padding = "0 0 0 0"
 child_margin = "0 0 0 0"
 child_padding = "0 0 0 0"
+# Optional per-section badge spacing override
+# badges_margin = "0.5rem 0"
+# badges_padding = "0"
+# badge_margin = "0 0 0 0.35rem"
+# badge_padding = "0.1rem 0.6rem"

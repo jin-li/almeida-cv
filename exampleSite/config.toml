@@ -28,9 +28,9 @@ pages = 2
 # Set this param to 'true' to swap the bar positions
 swapColumns = true
 # Ordered sections for left column (regular section style)
-section_order = ["profile", "thesis", "experience", "education", "publications", "references"]
+section_order = ["thesis", "diplomas", "experience", "references", "publications"]
 # Ordered sections for right column (sideSection style)
-side_section_order = ["avatar", "name", "contacts", "diplomas", "skills", "languages", "interests"]
+side_section_order = ["avatar", "name", "contacts", "profile", "skills", "interests"]
 footerNote = "2020 © by Inês Almeida   |   ines-almeida.com"
 
 # Left column (content__left) defaults and sizing
@@ -47,10 +47,10 @@ padding = "1rem 1rem"
 
 # Global defaults for all badge containers/items in all sections
 [params.badges]
-badges_margin = "0 0 0 0"
-badges_padding = "0 0 0 0"
+badges_margin = "-2rem 0 0 0"
+badges_padding = "0"
 badge_margin = "0 0 0 0"
-badge_padding = "0 0.2rem 0 0.2rem"
+badge_padding = "0 0.4rem 0 0.4rem"
 
 # Per-section overrides (wrapper)
 [params.avatar]
@@ -62,12 +62,12 @@ margin = "0 0 0 0"
 padding = "0 0 0 0"
 
 [params.contacts]
-margin = "0 0 0 0"
+margin = "0 0 2rem 0"
 padding = "0 0 0 0"
 
 [params.diplomas]
 margin = "0 0 2rem 0"
-child_margin = "1rem 0 0 0"
+child_margin = "0 0 0.5rem 0"
 
 [params.skills]
 margin = "0 0 0 0"
@@ -102,11 +102,16 @@ margin = "0 0 0 0"
 padding = "0 0 0 0"
 child_margin = "0 0 1rem 0"
 child_padding = "0 0 0 0"
+# Optional per-section badge spacing override
+# badges_margin = "0.5rem 0"
+# badges_padding = "0"
+# badge_margin = "0 0 0 0.35rem"
+# badge_padding = "0.1rem 0.6rem"
 
 [params.references]
 margin = "0 0 2rem 0"
 padding = "0 0 0 0"
-child_margin = "0 0 0 0"
+child_margin = "0 0 1rem 0"
 child_padding = "0 0 0 0"
 
 [params.publications]
@@ -120,3 +125,8 @@ margin = "0 0 2rem 0"
 padding = "0 0 0 0"
 child_margin = "0 0 0 0"
 child_padding = "0 0 0 0"
+# Optional per-section badge spacing override
+# badges_margin = "0.5rem 0"
+# badges_padding = "0"
+# badge_margin = "0 0 0 0.35rem"
+# badge_padding = "0.1rem 0.6rem"

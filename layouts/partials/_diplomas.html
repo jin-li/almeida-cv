@@ -21,10 +21,64 @@
     <div class="{{ $headingClass }}">
         <h2 class="{{ $titleClass }}">{{ partial "_t.html" (dict "key" "diplomas" "lang" ._lang) }}</h2>
     </div>
-    <div class="{{ $contentClass }}">
-        <ul>
+    <div class="{{ $contentClass }} diplomas">
+        <ul class="diplomas__items">
             {{ range .Diplomas }}
-            <li>{{ . | safeHTML }}</li>
+            <li class="diplomas__item">
+                {{ if reflect.IsMap . }}
+                    {{ $degree := "" }}
+                    {{ with .Degree }}{{ $degree = printf "%v" . }}{{ end }}
+                    {{ $year := "" }}
+                    {{ with .Year }}{{ $year = printf "%v" . }}{{ end }}
+                    {{ $university := "" }}
+                    {{ with .University }}{{ $university = printf "%v" . }}{{ end }}
+                    {{ $major := "" }}
+                    {{ with .Major }}{{ $major = printf "%v" . }}{{ end }}
+                    {{ $location := "" }}
+                    {{ with .Location }}{{ $location = printf "%v" . }}{{ end }}
+
+                    {{ if $isSide }}
+                        <div class="diplomas__line diplomas__line--degree">
+                            <span class="diplomas__left">
+                                <i class="fas fa-graduation-cap"></i>
+                                {{ with $degree }}<div class="diplomas__degree">{{ . | safeHTML }}</div>{{ end }}{{ if and $degree $year }} <span>({{ $year | safeHTML }})</span>{{ else if $year }}<span>({{ $year | safeHTML }})</span>{{ end }}
+                            </span>
+                        </div>
+                        {{ with $university }}
+                        <div class="diplomas__line diplomas__university">{{ . | safeHTML }}</div>
+                        {{ end }}
+                        {{ with $major }}
+                        <div class="diplomas__line diplomas__line--major">{{ . | safeHTML }}</div>
+                        {{ end }}
+                        {{ with $location }}
+                        <div class="diplomas__line diplomas__line--location">{{ . | safeHTML }}</div>
+                        {{ end }}
+                    {{ else }}
+                        <div class="diplomas__line diplomas__line--top">
+                            <span class="diplomas__left">{{ with $degree }}<i class="fas fa-graduation-cap"></i> <strong>{{ . | safeHTML }}</strong>{{ end }}{{ if and $degree $year }} <span>({{ $year | safeHTML }})</span>{{ else if $year }}<span>({{ $year | safeHTML }})</span>{{ end }}</span>
+                            <span class="diplomas__right">
+                                {{ with $university }}
+                                <i class="fas fa-university"></i>
+                                <strong>{{ . | safeHTML }}</strong>
+                                {{ end }}
+                            </span>
+                        </div>
+                        {{ if or $major $location }}
+                        <div class="diplomas__line diplomas__line--bottom">
+                            <span class="diplomas__left">{{ with $major }}{{ . | safeHTML }}{{ end }}</span>
+                            <span class="diplomas__right">
+                                {{ with $location }}
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>{{ . | safeHTML }}</span>
+                                {{ end }}
+                            </span>
+                        </div>
+                        {{ end }}
+                    {{ end }}
+                {{ else }}
+                    <div class="diplomas__line">{{ . | safeHTML }}</div>
+                {{ end }}
+            </li>
             {{ end }}
         </ul>
     </div>

@@ -1,0 +1,111 @@
+.diplomas {
+    &__items {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__item {
+        display: block;
+        @include avoid-break;
+        margin-bottom: 0.8rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__line {
+        color: $color-dark;
+        line-height: 1.35;
+
+        &:not(:last-child) {
+            margin-bottom: 0.25rem;
+        }
+    }
+
+    &__line--top {
+        font-size: small;
+        font-weight: bolder;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    &__line--bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__left {
+        text-align: left;
+
+        & > i {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: $color-icon-background;
+            font-size: small;
+            flex-shrink: 0;
+        }
+    }
+
+    &__degree {
+        font-weight: bolder;
+        font-size: small;
+    }
+
+    &__university {
+        font-weight: bolder;
+        font-size: small;
+    }
+
+    &__right {
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-end;
+        text-align: right;
+        gap: 0.5rem;
+        min-height: 2rem;
+
+        & > i {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: $color-icon-background;
+            font-size: 1rem;
+            border-radius: 50%;
+            width: 2rem;
+            height: 2rem;
+            flex-shrink: 0;
+        }
+    }
+}
+
+#diplomas.sideSection {
+    .diplomas__line {
+        text-align: left;
+    }
+
+    .diplomas__line--degree .diplomas__left {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        & > i {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $color-right-col-icon-background;
+            color: $color-right-col-icon-primary;
+            font-size: 1rem;
+            border-radius: 50%;
+            width: 2rem;
+            height: 2rem;
+            flex-shrink: 0;
+        }
+    }
+}

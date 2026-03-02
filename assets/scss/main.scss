@@ -76,6 +76,7 @@ $pages: {{ $params.pages | default 1}} !default;
 @import "components/references";
 @import "components/contact";
 @import "components/avatar";
+@import "components/diplomas";
 @import "components/skills";
 @import "components/languages";
 @import "components/interests";
