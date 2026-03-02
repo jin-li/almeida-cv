@@ -24,6 +24,10 @@ $pages: {{ $params.pages | default 1}} !default;
 {{ $contentPadding := "" }}
 {{ $contentRightOffset := "1rem" }}
 {{ $contentSwappedRightOffset := "1rem" }}
+{{ $globalBadgesMargin := "" }}
+{{ $globalBadgesPadding := "" }}
+{{ $globalBadgeMargin := "" }}
+{{ $globalBadgePadding := "" }}
 
 {{ if and $params.content (reflect.IsMap $params.content) }}
 	{{ with index $params.content "margin" }}
@@ -37,6 +41,21 @@ $pages: {{ $params.pages | default 1}} !default;
 	{{ end }}
 	{{ with index $params.content "swapped_right_offset" }}
 		{{ $contentSwappedRightOffset = printf "%v" . }}
+	{{ end }}
+{{ end }}
+
+{{ if and $params.badges (reflect.IsMap $params.badges) }}
+	{{ with index $params.badges "badges_margin" }}
+		{{ $globalBadgesMargin = printf "%v" . }}
+	{{ end }}
+	{{ with index $params.badges "badges_padding" }}
+		{{ $globalBadgesPadding = printf "%v" . }}
+	{{ end }}
+	{{ with index $params.badges "badge_margin" }}
+		{{ $globalBadgeMargin = printf "%v" . }}
+	{{ end }}
+	{{ with index $params.badges "badge_padding" }}
+		{{ $globalBadgePadding = printf "%v" . }}
 	{{ end }}
 {{ end }}
 
@@ -228,6 +247,26 @@ $pages: {{ $params.pages | default 1}} !default;
 		{{ $childPadding = printf "%v" . }}
 	{{ end }}
 
+	{{ $badgesMargin := $globalBadgesMargin }}
+	{{ with index $itemConfig "badges_margin" }}
+		{{ $badgesMargin = printf "%v" . }}
+	{{ end }}
+
+	{{ $badgesPadding := $globalBadgesPadding }}
+	{{ with index $itemConfig "badges_padding" }}
+		{{ $badgesPadding = printf "%v" . }}
+	{{ end }}
+
+	{{ $badgeMargin := $globalBadgeMargin }}
+	{{ with index $itemConfig "badge_margin" }}
+		{{ $badgeMargin = printf "%v" . }}
+	{{ end }}
+
+	{{ $badgePadding := $globalBadgePadding }}
+	{{ with index $itemConfig "badge_padding" }}
+		{{ $badgePadding = printf "%v" . }}
+	{{ end }}
+
 	{{ if or $sectionMargin $sectionPadding }}
 #{{ $sectionName }} {
 	{{ if $sectionMargin }}margin: {{ $sectionMargin }};{{ end }}
@@ -245,6 +284,20 @@ $pages: {{ $params.pages | default 1}} !default;
 #{{ $sectionName }} .sideSection__content > ol > li {
 	{{ if $childMargin }}margin: {{ $childMargin }};{{ end }}
 	{{ if $childPadding }}padding: {{ $childPadding }};{{ end }}
+}
+	{{ end }}
+
+	{{ if or $badgesMargin $badgesPadding }}
+#{{ $sectionName }} [class*="__badges"] {
+	{{ if $badgesMargin }}margin: {{ $badgesMargin }};{{ end }}
+	{{ if $badgesPadding }}padding: {{ $badgesPadding }};{{ end }}
+}
+	{{ end }}
+
+	{{ if or $badgeMargin $badgePadding }}
+#{{ $sectionName }} [class*="__badge"]:not([class*="__badges"]) {
+	{{ if $badgeMargin }}margin: {{ $badgeMargin }};{{ end }}
+	{{ if $badgePadding }}padding: {{ $badgePadding }};{{ end }}
 }
 	{{ end }}
 {{ end }}

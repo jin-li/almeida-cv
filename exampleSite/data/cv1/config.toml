@@ -35,6 +35,13 @@ percent = 28
 margin = "0"
 padding = "1rem 1rem"
 
+# Global defaults for all badge containers/items in all sections
+[params.badges]
+badges_margin = "0 0 0 0"
+badges_padding = "0 0 0 0"
+badge_margin = "0 0 0 0"
+badge_padding = "0 0.2rem 0 0.2rem"
+
 # Per-section overrides (wrapper)
 [params.avatar]
 margin = "0 0 0 0"
