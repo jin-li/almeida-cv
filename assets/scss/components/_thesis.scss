@@ -28,6 +28,12 @@
         height: 2.4rem;
     }
 
+    &__content {
+        &:hover {
+            transform: translateX(0.5rem);
+        }
+    }
+
     &__title,
     &__advisor {
         text-align: left;

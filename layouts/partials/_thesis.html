@@ -40,21 +40,23 @@
                 {{ with $first.Advisor }}
                     {{ $firstSubtitle = $firstSubtitle | append (printf "%v" .) }}
                 {{ end }}
-                <div class="thesis__subheader">
-                    <h3 class="thesis__advisor">{{ delimit $firstSubtitle " · " | safeHTML }}</h3>
-                    <h3 class="thesis__date">{{ $first.Date | safeHTML }}</h3>
-                </div>
-                <ul>
-                    {{ range $first.Details }}
-                    <li class="thesis__bullet">{{ . | safeHTML }}</li>
-                    {{ end }}
-                </ul>
-                <div class="thesis__badges">
+                <div class="thesis__content">
+                    <div class="thesis__subheader">
+                        <h3 class="thesis__advisor">{{ delimit $firstSubtitle " · " | safeHTML }}</h3>
+                        <h3 class="thesis__date">{{ $first.Date | safeHTML }}</h3>
+                    </div>
                     <ul>
-                        {{ range $first.Badges }}
-                        <li class="thesis__badge">{{ . }}</li>
+                        {{ range $first.Details }}
+                        <li class="thesis__bullet">{{ . | safeHTML }}</li>
                         {{ end }}
                     </ul>
+                    <div class="thesis__badges">
+                        <ul>
+                            {{ range $first.Badges }}
+                            <li class="thesis__badge">{{ . }}</li>
+                            {{ end }}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -75,21 +77,23 @@
             {{ with .Advisor }}
                 {{ $subtitle = $subtitle | append (printf "%v" .) }}
             {{ end }}
-            <div class="thesis__subheader">
-                <h3 class="thesis__advisor">{{ delimit $subtitle " · " | safeHTML }}</h3>
-                <h3 class="thesis__date">{{ .Date | safeHTML }}</h3>
-            </div>
-            <ul>
-                {{ range .Details }}
-                <li class="thesis__bullet">{{ . | safeHTML }}</li>
-                {{ end }}
-            </ul>
-            <div class="thesis__badges">
+            <div class="thesis__content">
+                <div class="thesis__subheader">
+                    <h3 class="thesis__advisor">{{ delimit $subtitle " · " | safeHTML }}</h3>
+                    <h3 class="thesis__date">{{ .Date | safeHTML }}</h3>
+                </div>
                 <ul>
-                    {{ range .Badges }}
-                    <li class="thesis__badge">{{ . }}</li>
+                    {{ range .Details }}
+                    <li class="thesis__bullet">{{ . | safeHTML }}</li>
                     {{ end }}
                 </ul>
+                <div class="thesis__badges">
+                    <ul>
+                        {{ range .Badges }}
+                        <li class="thesis__badge">{{ . }}</li>
+                        {{ end }}
+                    </ul>
+                </div>
             </div>
         </div>
         {{ end }}

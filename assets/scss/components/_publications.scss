@@ -28,6 +28,10 @@
         &:last-child {
             margin-bottom: 0;
         }
+
+        &:hover {
+            transform: translateX(0.5rem);
+        }
     }
 
     &__title {
@@ -42,6 +46,10 @@
 
     &__title:hover {
         text-decoration: underline;
+    }
+
+    &__publisher {
+        margin-left: 0.4rem;
     }
 }
 
