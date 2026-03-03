@@ -5,5 +5,5 @@
 {{ $lang := or .lang site.LanguageCode site.Language.Lang "en" }}
 
 {{ if templates.Exists $partialPath }}
-    {{ partial (printf "_%s.html" $resolvedName) (merge .data (dict "_isSide" .isSide "_lang" $lang)) }}
+    {{ partial (printf "_%s.html" $resolvedName) (merge .data (dict "_isSide" .isSide "_lang" $lang "_params" .params)) }}
 {{ end }}

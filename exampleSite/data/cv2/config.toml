@@ -87,6 +87,7 @@ child_margin = "0 0 0 0"
 child_padding = "0 0 0 0"
 
 [params.experience]
+display_name = "工作实习经历"
 margin = "0 0 0 0"
 padding = "0 0 0 0"
 child_margin = "0 0 1rem 0"
@@ -99,6 +100,7 @@ child_margin = "0 0 0 0"
 child_padding = "0 0 0 0"
 
 [params.publications]
+display_name = "期刊会议论文"
 margin = "0 0 2rem 0"
 padding = "0 0 0 0"
 child_margin = "0 0 0 0"

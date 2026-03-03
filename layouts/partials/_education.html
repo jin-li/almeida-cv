@@ -24,7 +24,7 @@
     <div class="{{ $leadClass }}">
         <div class="{{ $headingClass }}">
             <h2 class="{{ $titleClass }}">
-                {{ partial "_t.html" (dict "key" "education" "lang" ._lang) }}
+                {{ partial "_section_title.html" (dict "key" "education" "lang" ._lang "params" ._params) }}
             </h2>
         </div>
         {{ if gt (len $items) 0 }}

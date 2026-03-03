@@ -1,0 +1,20 @@
+{{- $key := lower (printf "%v" .key) -}}
+{{- $lang := .lang -}}
+{{- $params := .params -}}
+{{- $displayName := "" -}}
+
+{{- if reflect.IsMap $params -}}
+    {{- with index $params $key -}}
+        {{- if reflect.IsMap . -}}
+            {{- with index . "display_name" -}}
+                {{- $displayName = printf "%v" . -}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+
+{{- if $displayName -}}
+    {{- $displayName -}}
+{{- else -}}
+    {{- partial "_t.html" (dict "key" $key "lang" $lang) -}}
+{{- end -}}

@@ -41,7 +41,7 @@
         <div class="content__left">
         {{ end }}
             {{ range $sections }}
-                {{ partial "_render_section.html" (dict "name" . "data" $data "isSide" false "lang" $pageLang) }}
+                {{ partial "_render_section.html" (dict "name" . "data" $data "isSide" false "lang" $pageLang "params" $params) }}
             {{ end }}
         </div>
         {{ if $params.swapColumns }}
@@ -50,7 +50,7 @@
         <div class="content__right">
         {{ end }}
             {{ range $sideSections }}
-                {{ partial "_render_section.html" (dict "name" . "data" $data "isSide" true "lang" $pageLang) }}
+                {{ partial "_render_section.html" (dict "name" . "data" $data "isSide" true "lang" $pageLang "params" $params) }}
             {{ end }}
         </div>
     </div>

@@ -88,19 +88,34 @@ section_order = ["profile", "experience", "projects", "thesis", "publications"]
 side_section_order = ["name", "avatar", "contacts", "education", "skills", "languages"]
 ```
 
-### Useful params
+### Global params
 
 - Global style tokens: `colorLight`, `colorDark`, `colorPrimary`, etc.
 - Page layout:
 	- `[params.section]` / `[params.side_section]` for left/right column width, margin, padding
 	- `[params.content]` for page content margin/padding and right column offsets
-- Per-section spacing:
-	- `[params.<section>]` with `margin`, `padding`, `child_margin`, `child_padding`
 
 Supported sections include:
 
 - `name`, `profile`, `experience`, `projects`, `thesis`, `education`, `publications`, `references`
 - `avatar`, `contacts`, `skills`, `languages`, `diplomas`, `interests`
+
+### Per-Section params
+
+- Per-section spacing:
+	- `[params.<section>]` with `margin`, `padding`, `child_margin`, `child_padding`
+- Override section title display with `[params.<section>.display_name]` 
+
+Example:
+		
+```toml
+[params.publications]
+display_name = "Journal/Conference Publications"
+margin = "0 0 2rem 0"
+padding = "0 0 0 0"
+child_margin = "0 0 0 0"
+child_padding = "0 0 0 0"
+```
 
 ## Content schema additions
 

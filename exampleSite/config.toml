@@ -66,38 +66,45 @@ margin = "0 0 2rem 0"
 padding = "0 0 0 0"
 
 [params.diplomas]
+# display_name = "Diplomas"
 margin = "0 0 2rem 0"
 child_margin = "0 0 0.5rem 0"
 
 [params.skills]
+# display_name = "Skills"
 margin = "0 0 0 0"
 padding = "0 0 2rem 0"
 child_margin = "0 0 0 0"
 child_padding = "0 0 0 0"
 
 [params.languages]
+# display_name = "Languages"
 margin = "0 0 0 0"
 padding = "0 0 2rem 0"
 child_margin = "0 0 0 0"
 child_padding = "0 0 0 0"
 
 [params.interests]
+# display_name = "Interests"
 margin = "0 0 0 0"
 padding = "0 0 2rem 0"
 child_margin = "0 0 0 0"
 child_padding = "0 0 0 0"
 
 [params.profile]
+# display_name = "Profile"
 margin = "0 0 0 0"
 padding = "0 0 2rem 0"
 
 [params.education]
+# display_name = "Education"
 margin = "0 0 2rem 0"
 padding = "0 0 0 0"
 child_margin = "0 0 0 0"
 child_padding = "0 0 0 0"
 
 [params.experience]
+# display_name = "Experience"
 margin = "0 0 0 0"
 padding = "0 0 0 0"
 child_margin = "0 0 1rem 0"
@@ -109,24 +116,28 @@ child_padding = "0 0 0 0"
 # badge_padding = "0.1rem 0.6rem"
 
 [params.projects]
+# display_name = "Projects"
 margin = "0 0 2rem 0"
 padding = "0 0 0 0"
 child_margin = "0 0 1rem 0"
 child_padding = "0 0 0 0"
 
 [params.references]
+# display_name = "References"
 margin = "0 0 2rem 0"
 padding = "0 0 0 0"
 child_margin = "0 0 1rem 0"
 child_padding = "0 0 0 0"
 
 [params.publications]
+display_name = "Journal/Conference Publications"
 margin = "0 0 2rem 0"
 padding = "0 0 0 0"
 child_margin = "0 0 0 0"
 child_padding = "0 0 0 0"
 
 [params.thesis]
+display_name = "PhD Thesis"
 margin = "0 0 2rem 0"
 padding = "0 0 0 0"
 child_margin = "0 0 0 0"
