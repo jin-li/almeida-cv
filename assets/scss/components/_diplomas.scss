@@ -103,6 +103,10 @@
 }
 
 #diplomas.sideSection {
+    .diplomas__items {
+        padding-left: 0;
+    }
+    
     .diplomas__items::before {
         display: none;
     }
