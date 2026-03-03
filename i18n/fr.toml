@@ -4,6 +4,9 @@ other = "Profil"
 [experience]
 other = "Experiences"
 
+[projects]
+other = "Projets"
+
 [education]
 other = "Formation"
 

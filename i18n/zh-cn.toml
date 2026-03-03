@@ -4,6 +4,9 @@ other = "个人简介"
 [experience]
 other = "工作经历"
 
+[projects]
+other = "项目"
+
 [education]
 other = "教育经历"
 

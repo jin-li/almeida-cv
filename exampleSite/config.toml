@@ -28,7 +28,7 @@ pages = 2
 # Set this param to 'true' to swap the bar positions
 swapColumns = true
 # Ordered sections for left column (regular section style)
-section_order = ["thesis", "diplomas", "experience", "references", "publications"]
+section_order = ["profile", "thesis", "experience", "projects", "education", "publications", "references"]
 # Ordered sections for right column (sideSection style)
 side_section_order = ["avatar", "name", "contacts", "profile", "skills", "interests"]
 footerNote = "2020 © by Inês Almeida   |   ines-almeida.com"
@@ -107,6 +107,12 @@ child_padding = "0 0 0 0"
 # badges_padding = "0"
 # badge_margin = "0 0 0 0.35rem"
 # badge_padding = "0.1rem 0.6rem"
+
+[params.projects]
+margin = "0 0 2rem 0"
+padding = "0 0 0 0"
+child_margin = "0 0 1rem 0"
+child_padding = "0 0 0 0"
 
 [params.references]
 margin = "0 0 2rem 0"

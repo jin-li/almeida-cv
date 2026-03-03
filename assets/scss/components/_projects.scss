@@ -1,0 +1,67 @@
+.projects {
+    &__item {
+        display: block;
+        position: relative;
+        @include avoid-break;
+        margin-top: 0;
+        margin-bottom: 0;
+        transition: transform 0.2s cubic-bezier($cubic);
+
+        &:not(:first-child) {
+            padding-top: 0;
+        }
+
+        &:hover {
+            transform: translateX(0.5rem);
+        }
+    }
+
+    &__topic {
+        color: $color-dark;
+        text-align: left;
+        margin-bottom: 0.4rem;
+    }
+
+    &__detailsWrapper {
+        position: relative;
+        margin-left: 0.3rem;
+        padding-left: 1rem;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.35rem;
+            bottom: 0.35rem;
+            width: 1.5px;
+            background: linear-gradient($color-page-background, rgba(255, 255, 255, 0));
+        }
+    }
+
+    &__details {
+        margin: 0;
+        padding-left: 0;
+    }
+
+    &__bullet {
+        list-style: square inside;
+        margin-left: 1rem;
+    }
+
+    &__badges {
+        display: block;
+        text-align: right;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    &__badge {
+        font-size: 0.9rem;
+        font-weight: 400;
+        display: inline-block;
+        background-color: $color-icon-background;
+        color: $color-icon-primary;
+        border-radius: 1rem;
+        padding: 0.1rem 0.6rem;
+    }
+}

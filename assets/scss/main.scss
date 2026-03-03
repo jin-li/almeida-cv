@@ -70,6 +70,7 @@ $pages: {{ $params.pages | default 1}} !default;
 @import "components/name";
 @import "components/side_section";
 @import "components/experience";
+@import "components/projects";
 @import "components/thesis";
 @import "components/education";
 @import "components/publications";
@@ -84,9 +85,9 @@ $pages: {{ $params.pages | default 1}} !default;
 
 @import "custom";
 
-{{ $defaultSections := slice "name" "profile" "experience" "thesis" "education" "publications" "references" }}
+{{ $defaultSections := slice "name" "profile" "experience" "projects" "thesis" "education" "publications" "references" }}
 {{ $defaultSideSections := slice "avatar" "contacts" "skills" "languages" "diplomas" "interests" }}
-{{ $aliases := dict "contact" "contacts" "language" "languages" "diploma" "diplomas" "interest" "interests" "theses" "thesis" }}
+{{ $aliases := dict "contact" "contacts" "language" "languages" "diploma" "diplomas" "interest" "interests" "project" "projects" "theses" "thesis" }}
 
 {{ $sections := $defaultSections }}
 {{ if $params.section_order }}
