@@ -103,6 +103,10 @@
 }
 
 #diplomas.sideSection {
+    .diplomas__items::before {
+        display: none;
+    }
+
     .diplomas__line {
         text-align: left;
     }
