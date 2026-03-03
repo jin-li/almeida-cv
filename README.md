@@ -21,6 +21,10 @@ For the original theme, see [Almeida CV](https://github.com/ineesalmeida/almeida
 	- Linked/italic title support
 	- Single timeline-style gradient line in front of list
 	- Bullet list styling and print-friendly behavior
+- New `Projects` section
+	- Experience-like visual style
+	- Gradient guide line in front of each project's details list
+	- Topic, details, and optional badges support
 - New `Thesis` section
 	- Experience-like visual style (timeline, place icon, bullets, badges)
 - Better child spacing controls
@@ -80,7 +84,7 @@ title = "CV Chinese"
 languageCode = "zh-cn"
 
 [params]
-section_order = ["profile", "experience", "thesis", "publications"]
+section_order = ["profile", "experience", "projects", "thesis", "publications"]
 side_section_order = ["name", "avatar", "contacts", "education", "skills", "languages"]
 ```
 
@@ -95,7 +99,7 @@ side_section_order = ["name", "avatar", "contacts", "education", "skills", "lang
 
 Supported sections include:
 
-- `name`, `profile`, `experience`, `thesis`, `education`, `publications`, `references`
+- `name`, `profile`, `experience`, `projects`, `thesis`, `education`, `publications`, `references`
 - `avatar`, `contacts`, `skills`, `languages`, `diplomas`, `interests`
 
 ## Content schema additions
@@ -120,6 +124,21 @@ Render style:
 Demo:
 
 ![Publications section](images/publications.png)
+
+### Projects
+
+```yaml
+Projects:
+	- Topic: A Wonderful Research Project
+		Details:
+			- Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+			- Ut enim ad minim veniam, quis nostrud exercitation.
+		Badges: [keyword1, keyword2, keyword3]
+```
+
+Demo:
+
+![Projects section](images/projects.png)
 
 ### Thesis
 
@@ -154,7 +173,7 @@ If your browser print misses backgrounds/badges, enable **Background Graphics** 
 
 Section labels are translated via `i18n/*.toml`.
 
-This fork currently includes thesis/publications labels in:
+This fork currently includes thesis/publications/projects labels in:
 
 - `i18n/en.toml` for English
 - `i18n/de.toml` for German
