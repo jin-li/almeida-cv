@@ -28,9 +28,9 @@ pages = 2
 # Set this param to 'true' to swap the bar positions
 swapColumns = true
 # Ordered sections for left column (regular section style)
-section_order = ["profile", "thesis", "experience", "projects", "education", "publications", "references"]
+section_order = ["profile", "thesis", "experience", "projects", "research", "publications", "references"]
 # Ordered sections for right column (sideSection style)
-side_section_order = ["avatar", "name", "contacts", "profile", "skills", "interests"]
+side_section_order = ["avatar", "name", "contacts", "diplomas", "skills", "interests"]
 footerNote = "2020 © by Inês Almeida   |   ines-almeida.com"
 
 # Left column (content__left) defaults and sizing
@@ -117,6 +117,13 @@ child_padding = "0 0 0 0"
 
 [params.projects]
 # display_name = "Projects"
+margin = "0 0 2rem 0"
+padding = "0 0 0 0"
+child_margin = "0 0 1rem 0"
+child_padding = "0 0 0 0"
+
+[params.research]
+# display_name = "Scientific Research"
 margin = "0 0 2rem 0"
 padding = "0 0 0 0"
 child_margin = "0 0 1rem 0"

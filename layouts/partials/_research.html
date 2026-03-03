@@ -1,0 +1,91 @@
+{{ if .Research }}
+    {{ $isSide := false }}
+
+    {{ if isset . "_isSide" }}
+        {{ $isSide = ._isSide }}
+    {{ end }}
+
+    {{ $wrapperClass := "section" }}
+    {{ $headingClass := "section__heading" }}
+    {{ $titleClass := "section__title" }}
+    {{ $contentClass := "section__content" }}
+
+    {{ if $isSide }}
+        {{ $wrapperClass = "sideSection" }}
+        {{ $headingClass = "sideSection__heading" }}
+        {{ $titleClass = "sideSection__title" }}
+        {{ $contentClass = "sideSection__content" }}
+    {{ end }}
+
+    {{ $leadClass := printf "%s__lead" $wrapperClass }}
+    {{ $items := .Research }}
+
+<div id="research" class="{{ $wrapperClass }}">
+    <div class="{{ $leadClass }}">
+        <div class="{{ $headingClass }}">
+            <h2 class="{{ $titleClass }}">{{ partial "_section_title.html" (dict "key" "research" "lang" ._lang "params" ._params) }}</h2>
+        </div>
+        {{ if gt (len $items) 0 }}
+        {{ $first := index $items 0 }}
+        <div class="{{ $contentClass }} projects">
+            {{ if $first.Class }}
+            <div class="projects__item {{ $first.Class }}">
+            {{ else }}
+            <div class="projects__item">
+            {{ end }}
+                <h3 class="projects__topic">{{ $first.Topic | safeHTML }}</h3>
+                {{ with $first.Details }}
+                <div class="projects__detailsWrapper">
+                    <ul class="projects__details">
+                        {{ range . }}
+                        <li class="projects__bullet">{{ . | safeHTML }}</li>
+                        {{ end }}
+                    </ul>
+                </div>
+                {{ end }}
+                {{ with $first.Badges }}
+                <div class="projects__badges">
+                    <ul>
+                        {{ range . }}
+                        <li class="projects__badge">{{ . }}</li>
+                        {{ end }}
+                    </ul>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+        {{ end }}
+    </div>
+    {{ if gt (len $items) 1 }}
+    <div class="{{ $contentClass }} projects">
+        {{ range after 1 $items }}
+        {{ if .Class }}
+        <div class="projects__item {{ .Class }}">
+        {{ else }}
+        <div class="projects__item">
+        {{ end }}
+            <h3 class="projects__topic">{{ .Topic | safeHTML }}</h3>
+            {{ with .Details }}
+            <div class="projects__detailsWrapper">
+                <ul class="projects__details">
+                    {{ range . }}
+                    <li class="projects__bullet">{{ . | safeHTML }}</li>
+                    {{ end }}
+                </ul>
+            </div>
+            {{ end }}
+            {{ with .Badges }}
+            <div class="projects__badges">
+                <ul>
+                    {{ range . }}
+                    <li class="projects__badge">{{ . }}</li>
+                    {{ end }}
+                </ul>
+            </div>
+            {{ end }}
+        </div>
+        {{ end }}
+    </div>
+    {{ end }}
+</div>
+{{ end }}

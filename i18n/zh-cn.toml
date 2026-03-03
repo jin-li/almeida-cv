@@ -7,6 +7,9 @@ other = "工作经历"
 [projects]
 other = "项目"
 
+[research]
+other = "研究"
+
 [education]
 other = "教育经历"
 

@@ -7,6 +7,9 @@ other = "Doświadczenie"
 [projects]
 other = "Projekty"
 
+[research]
+other = "Badania"
+
 [education]
 other = "Wykształcenie"
 
